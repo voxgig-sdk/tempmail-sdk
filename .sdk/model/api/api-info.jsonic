@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://tempmail.lol/en/api#getting-started"
+      }
+      description: "The TempMail API allows users to create and manage disposable email inboxes for temporary use. It supports functionality such as fetching emails, custom domains, and webhook integrations, making it a versatile tool for managing online correspondence without revealing personal email addresses."
+      servers: [
+        {
+          description: "TempMail API Server"
+          url: "https://api.tempmail.lol"
+        }
+      ]
+      title: "TempMail API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

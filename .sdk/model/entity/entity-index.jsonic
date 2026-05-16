@@ -1,0 +1,7 @@
+# Entity Models
+
+@"domain.jsonic"
+@"email.jsonic"
+@"inbox.jsonic"
+@"message.jsonic"
+@"webhook.jsonic"

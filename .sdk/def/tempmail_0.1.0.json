@@ -1,0 +1,655 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TempMail API",
+    "description": "The TempMail API allows users to create and manage disposable email inboxes for temporary use. It supports functionality such as fetching emails, custom domains, and webhook integrations, making it a versatile tool for managing online correspondence without revealing personal email addresses.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://tempmail.lol/en/api#getting-started"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.tempmail.lol",
+      "description": "TempMail API Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Inbox",
+      "description": "Operations for managing disposable email inboxes"
+    },
+    {
+      "name": "Messages",
+      "description": "Operations for retrieving and managing emails"
+    },
+    {
+      "name": "Domains",
+      "description": "Operations for managing custom domains"
+    },
+    {
+      "name": "Webhooks",
+      "description": "Operations for webhook integrations"
+    }
+  ],
+  "paths": {
+    "/generate": {
+      "get": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "Generate a new temporary email address",
+        "description": "Creates a new disposable email inbox and returns the email address",
+        "operationId": "generateInbox",
+        "responses": {
+          "200": {
+            "description": "Successfully generated temporary email address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "address": {
+                      "type": "string",
+                      "description": "The generated temporary email address",
+                      "example": "random123@tempmail.lol"
+                    },
+                    "token": {
+                      "type": "string",
+                      "description": "Authentication token for accessing this inbox",
+                      "example": "abc123def456"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inbox/{token}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Retrieve inbox messages",
+        "description": "Fetches all emails received in the specified temporary inbox",
+        "operationId": "getInboxMessages",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "description": "The authentication token for the inbox",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved inbox messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "emails": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Email"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Inbox not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TokenAuth": []
+          }
+        ]
+      }
+    },
+    "/inbox/{token}/message/{messageId}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Retrieve a specific message",
+        "description": "Fetches a single email message by its ID from the specified inbox",
+        "operationId": "getMessage",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "description": "The authentication token for the inbox",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the email message",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Email"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Message not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TokenAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Delete a specific message",
+        "description": "Deletes a single email message by its ID from the specified inbox",
+        "operationId": "deleteMessage",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "description": "The authentication token for the inbox",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the email message",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Message deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Message not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TokenAuth": []
+          }
+        ]
+      }
+    },
+    "/domains": {
+      "get": {
+        "tags": [
+          "Domains"
+        ],
+        "summary": "List available domains",
+        "description": "Retrieves a list of available domains that can be used for creating temporary email addresses",
+        "operationId": "getDomains",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved domains list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "domains": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "tempmail.lol",
+                        "temp.lol",
+                        "disposable.lol"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/custom/{username}@{domain}": {
+      "post": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "Create custom email address",
+        "description": "Creates a temporary inbox with a custom username and selected domain",
+        "operationId": "createCustomInbox",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "description": "The desired username for the email address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain",
+            "in": "path",
+            "required": true,
+            "description": "The domain to use for the email address",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully created custom email address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "address": {
+                      "type": "string",
+                      "description": "The created custom email address",
+                      "example": "myname@tempmail.lol"
+                    },
+                    "token": {
+                      "type": "string",
+                      "description": "Authentication token for accessing this inbox",
+                      "example": "abc123def456"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid username or domain",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict - Email address already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhook": {
+      "post": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Register webhook",
+        "description": "Registers a webhook URL to receive notifications when new emails arrive",
+        "operationId": "registerWebhook",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token",
+                  "url"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "The inbox token to register webhook for"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "The webhook URL to receive notifications"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "webhookId": {
+                      "type": "string",
+                      "description": "Unique identifier for the registered webhook"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhook/{webhookId}": {
+      "delete": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Unregister webhook",
+        "description": "Removes a previously registered webhook",
+        "operationId": "unregisterWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the webhook to remove",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "The inbox token for authentication"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook unregistered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Webhook removed successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Webhook not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Email": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the email message"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender's email address"
+          },
+          "to": {
+            "type": "string",
+            "description": "Recipient's email address"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Email subject line"
+          },
+          "body": {
+            "type": "string",
+            "description": "Email body content (plain text)"
+          },
+          "html": {
+            "type": "string",
+            "description": "Email body content (HTML format)"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the email was received"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "description": "List of email attachments"
+          }
+        }
+      },
+      "Attachment": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "Name of the attached file"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "MIME type of the attachment"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Size of the attachment in bytes"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to download the attachment"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "integer",
+            "description": "Error code"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "TokenAuth": {
+        "type": "apiKey",
+        "in": "path",
+        "name": "token",
+        "description": "Authentication token provided when creating an inbox"
+      }
+    }
+  }
+}

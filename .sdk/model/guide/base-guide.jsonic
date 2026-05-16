@@ -1,0 +1,51 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 5
+  metrics: count: path: 7
+  metrics: count: method: 8
+
+  entity: domain: {
+    path: "/domains": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: email: {
+    path: "/inbox/{token}/message/{messageId}": {
+      rename: param: "messageId": *"message_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: inbox: {
+    path: "/custom/{username}@{domain}": {
+      op: create: method: *POST
+    }
+    path: "/generate": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: message: {
+    path: "/inbox/{token}": {
+      op: load: method: *GET
+    }
+    path: "/inbox/{token}/message/{messageId}": {
+      rename: param: "messageId": *"id"
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.message`")|top
+    }
+  }
+
+  entity: webhook: {
+    path: "/webhook": {
+      op: create: method: *POST
+    }
+    path: "/webhook/{webhookId}": {
+      rename: param: "webhookId": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+}

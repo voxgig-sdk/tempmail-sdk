@@ -1,0 +1,110 @@
+# Entity: message
+
+main: kit: entity: message: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "email"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "message"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "token"
+                orig: "token"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/inbox/{token}"
+          parts: [
+            "inbox"
+            "{token}"
+          ]
+          select: {
+            exist: [
+              "token"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "message_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "token"
+                orig: "token"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/inbox/{token}/message/{messageId}"
+          parts: [
+            "inbox"
+            "{token}"
+            "message"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              messageId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "token"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "inbox"
+      ]
+    ]
+  }
+
+
+
+}

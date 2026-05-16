@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "inbox": {
+      "INBOX00": {
+        "address": "s14",
+        "token": "s15",
+        "domain": "DOMAIN01",
+        "username": "USERNAME01"
+      },
+      "INBOX01": {
+        "address": "s28",
+        "token": "s29",
+        "domain": "DOMAIN01",
+        "username": "USERNAME01"
+      },
+      "INBOX02": {
+        "address": "s3c",
+        "token": "s3d",
+        "domain": "DOMAIN01",
+        "username": "USERNAME01"
+      }
+    }
+  },
+  "new": {
+    "inbox": {
+      "inbox_ref01": {
+        "address": "s50",
+        "token": "s51"
+      }
+    }
+  }
+}
