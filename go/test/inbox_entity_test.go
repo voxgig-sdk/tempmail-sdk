@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/tempmail-sdk"
-	"github.com/voxgig-sdk/tempmail-sdk/core"
+	sdk "github.com/voxgig-sdk/tempmail-sdk/go"
+	"github.com/voxgig-sdk/tempmail-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/tempmail-sdk/go/utility/struct"
 )
 
 func TestInboxEntity(t *testing.T) {

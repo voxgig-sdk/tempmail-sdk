@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/tempmail-sdk/core"
+	"github.com/voxgig-sdk/tempmail-sdk/go/core"
 )
 
 type BaseFeature struct {

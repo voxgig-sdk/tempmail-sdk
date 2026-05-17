@@ -5,19 +5,22 @@
         "address": "s14",
         "token": "s15",
         "domain": "DOMAIN01",
-        "username": "USERNAME01"
+        "username": "USERNAME01",
+        "id": "INBOX00"
       },
       "INBOX01": {
         "address": "s28",
         "token": "s29",
         "domain": "DOMAIN01",
-        "username": "USERNAME01"
+        "username": "USERNAME01",
+        "id": "INBOX01"
       },
       "INBOX02": {
         "address": "s3c",
         "token": "s3d",
         "domain": "DOMAIN01",
-        "username": "USERNAME01"
+        "username": "USERNAME01",
+        "id": "INBOX02"
       }
     }
   },
