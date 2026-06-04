@@ -93,14 +93,12 @@ func domainDirectSetup(mockres any) *domainDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TEMPMAIL_TEST_DOMAIN_ENTID": map[string]any{},
 		"TEMPMAIL_TEST_LIVE":    "FALSE",
-		"TEMPMAIL_APIKEY":       "NONE",
 	})
 
 	live := env["TEMPMAIL_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["TEMPMAIL_APIKEY"],
 		}
 		client := sdk.NewTempmailSDK(mergedOpts)
 

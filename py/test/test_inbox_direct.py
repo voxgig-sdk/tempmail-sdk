@@ -59,14 +59,12 @@ def _inbox_direct_setup(mockres):
     env = runner.env_override({
         "TEMPMAIL_TEST_INBOX_ENTID": {},
         "TEMPMAIL_TEST_LIVE": "FALSE",
-        "TEMPMAIL_APIKEY": "NONE",
     })
 
     live = env.get("TEMPMAIL_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("TEMPMAIL_APIKEY"),
         }
         client = TempmailSDK(merged_opts)
         return {
