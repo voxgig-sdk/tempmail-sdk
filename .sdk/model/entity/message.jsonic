@@ -90,7 +90,7 @@ main: kit: entity: message: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.message`"
           }
         }
       ]

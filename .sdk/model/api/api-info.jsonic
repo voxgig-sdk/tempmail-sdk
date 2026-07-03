@@ -16,26 +16,7 @@ main: {
       ]
       title: "TempMail API"
       version: "1.0.0"
-      tagline: "Spin up disposable inboxes and receive messages or webhooks via the tempmail.lol API"
-      homepage: "https://tempmail.lol"
-      docs_url: "https://tempmail.lol/api"
-      about_md: `[TempMail](https://tempmail.lol) is a disposable email service that lets you generate throwaway inboxes on demand and read the messages they receive. The hosted API at \`https://api.tempmail.lol\` powers the same flows used by the web app and the official JavaScript and Python client libraries.
-
-Typical uses include signup-flow testing, anti-spam screening, automated QA of transactional email, and webhook-driven pipelines that forward inbound mail to other systems.
-
-Operational notes:
-
-- Account, plan, and key management is handled through \`https://tempmail.lol/account\`.
-- Official client libraries are published for JavaScript and Python; community support is available on the project Discord.
-- Consult the live documentation at \`https://tempmail.lol/api\` for authoritative endpoint shapes, auth requirements, and any plan-specific limits.`
-      entity_desc: {
-        domain: "A mail domain that can be used to host disposable inbox addresses."
-        email: "An individual email address allocated for receiving disposable mail."
-        inbox: "A disposable inbox created on demand to collect incoming messages addressed to its email."
-        message: "A single received email captured by an inbox, including sender, subject, body, and any attachments."
-        webhook: "A subscription that forwards inbound mail events to a caller-supplied URL for real-time processing."
-      }
-      auth: false
     }
   }
 }
+
