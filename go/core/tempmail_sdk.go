@@ -245,26 +245,41 @@ func (sdk *TempmailSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 }
 
 
+// Domain returns a Domain entity bound to this client.
+// Idiomatic usage: client.Domain(nil).List(nil, nil) or
+// client.Domain(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TempmailSDK) Domain(data map[string]any) TempmailEntity {
 	return NewDomainEntityFunc(sdk, data)
 }
 
 
+// Email returns a Email entity bound to this client.
+// Idiomatic usage: client.Email(nil).List(nil, nil) or
+// client.Email(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TempmailSDK) Email(data map[string]any) TempmailEntity {
 	return NewEmailEntityFunc(sdk, data)
 }
 
 
+// Inbox returns a Inbox entity bound to this client.
+// Idiomatic usage: client.Inbox(nil).List(nil, nil) or
+// client.Inbox(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TempmailSDK) Inbox(data map[string]any) TempmailEntity {
 	return NewInboxEntityFunc(sdk, data)
 }
 
 
+// Message returns a Message entity bound to this client.
+// Idiomatic usage: client.Message(nil).List(nil, nil) or
+// client.Message(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TempmailSDK) Message(data map[string]any) TempmailEntity {
 	return NewMessageEntityFunc(sdk, data)
 }
 
 
+// Webhook returns a Webhook entity bound to this client.
+// Idiomatic usage: client.Webhook(nil).List(nil, nil) or
+// client.Webhook(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TempmailSDK) Webhook(data map[string]any) TempmailEntity {
 	return NewWebhookEntityFunc(sdk, data)
 }

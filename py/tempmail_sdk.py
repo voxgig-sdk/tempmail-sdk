@@ -144,16 +144,23 @@ class TempmailSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class TempmailSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,35 +212,90 @@ class TempmailSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def domain(self):
+        """Idiomatic facade: client.domain.list() / client.domain.load({"id": ...})."""
+        from entity.domain_entity import DomainEntity
+        cached = getattr(self, "_domain", None)
+        if cached is None:
+            cached = DomainEntity(self, None)
+            self._domain = cached
+        return cached
 
     def Domain(self, data=None):
+        # Deprecated: use client.domain instead.
         from entity.domain_entity import DomainEntity
         return DomainEntity(self, data)
 
 
+    @property
+    def email(self):
+        """Idiomatic facade: client.email.list() / client.email.load({"id": ...})."""
+        from entity.email_entity import EmailEntity
+        cached = getattr(self, "_email", None)
+        if cached is None:
+            cached = EmailEntity(self, None)
+            self._email = cached
+        return cached
+
     def Email(self, data=None):
+        # Deprecated: use client.email instead.
         from entity.email_entity import EmailEntity
         return EmailEntity(self, data)
 
 
+    @property
+    def inbox(self):
+        """Idiomatic facade: client.inbox.list() / client.inbox.load({"id": ...})."""
+        from entity.inbox_entity import InboxEntity
+        cached = getattr(self, "_inbox", None)
+        if cached is None:
+            cached = InboxEntity(self, None)
+            self._inbox = cached
+        return cached
+
     def Inbox(self, data=None):
+        # Deprecated: use client.inbox instead.
         from entity.inbox_entity import InboxEntity
         return InboxEntity(self, data)
 
 
+    @property
+    def message(self):
+        """Idiomatic facade: client.message.list() / client.message.load({"id": ...})."""
+        from entity.message_entity import MessageEntity
+        cached = getattr(self, "_message", None)
+        if cached is None:
+            cached = MessageEntity(self, None)
+            self._message = cached
+        return cached
+
     def Message(self, data=None):
+        # Deprecated: use client.message instead.
         from entity.message_entity import MessageEntity
         return MessageEntity(self, data)
 
 
+    @property
+    def webhook(self):
+        """Idiomatic facade: client.webhook.list() / client.webhook.load({"id": ...})."""
+        from entity.webhook_entity import WebhookEntity
+        cached = getattr(self, "_webhook", None)
+        if cached is None:
+            cached = WebhookEntity(self, None)
+            self._webhook = cached
+        return cached
+
     def Webhook(self, data=None):
+        # Deprecated: use client.webhook instead.
         from entity.webhook_entity import WebhookEntity
         return WebhookEntity(self, data)
 

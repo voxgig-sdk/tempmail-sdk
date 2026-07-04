@@ -44,17 +44,14 @@ class TestWebhookEntity:
         webhook_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.webhook"), "webhook_ref01"))
 
-        webhook_ref01_data_result, err = webhook_ref01_ent.create(webhook_ref01_data, None)
-        assert err is None
-        webhook_ref01_data = helpers.to_map(webhook_ref01_data_result)
+        webhook_ref01_data = helpers.to_map(webhook_ref01_ent.create(webhook_ref01_data, None))
         assert webhook_ref01_data is not None
 
         # REMOVE
         webhook_ref01_match_rm0 = {
             "id": webhook_ref01_data["id"],
         }
-        _, err = webhook_ref01_ent.remove(webhook_ref01_match_rm0, None)
-        assert err is None
+        webhook_ref01_ent.remove(webhook_ref01_match_rm0, None)
 
 
 

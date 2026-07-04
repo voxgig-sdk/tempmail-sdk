@@ -43,8 +43,7 @@ class WebhookEntityTest extends TestCase
         $webhook_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.webhook"), "webhook_ref01"));
 
-        [$webhook_ref01_data_result, $err] = $webhook_ref01_ent->create($webhook_ref01_data, null);
-        $this->assertNull($err);
+        $webhook_ref01_data_result = $webhook_ref01_ent->create($webhook_ref01_data, null);
         $webhook_ref01_data = Helpers::to_map($webhook_ref01_data_result);
         $this->assertNotNull($webhook_ref01_data);
 
@@ -52,8 +51,7 @@ class WebhookEntityTest extends TestCase
         $webhook_ref01_match_rm0 = [
             "id" => $webhook_ref01_data["id"],
         ];
-        [$_, $err] = $webhook_ref01_ent->remove($webhook_ref01_match_rm0, null);
-        $this->assertNull($err);
+        $webhook_ref01_ent->remove($webhook_ref01_match_rm0, null);
 
     }
 }

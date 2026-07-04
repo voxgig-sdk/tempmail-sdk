@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch MessageLoadMatch
+---@param ctrl? table
+---@return Message
+---@return string? err
 function MessageEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -110,6 +114,10 @@ end
 
 
 
+---@param reqmatch MessageRemoveMatch
+---@param ctrl? table
+---@return Message
+---@return string? err
 function MessageEntity:remove(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

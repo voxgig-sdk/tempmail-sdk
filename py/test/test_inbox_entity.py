@@ -46,15 +46,12 @@ class TestInboxEntity:
         inbox_ref01_data["domain"] = setup["idmap"]["domain01"]
         inbox_ref01_data["username"] = setup["idmap"]["username01"]
 
-        inbox_ref01_data_result, err = inbox_ref01_ent.create(inbox_ref01_data, None)
-        assert err is None
-        inbox_ref01_data = helpers.to_map(inbox_ref01_data_result)
+        inbox_ref01_data = helpers.to_map(inbox_ref01_ent.create(inbox_ref01_data, None))
         assert inbox_ref01_data is not None
 
         # LOAD
         inbox_ref01_match_dt0 = {}
-        inbox_ref01_data_dt0_loaded, err = inbox_ref01_ent.load(inbox_ref01_match_dt0, None)
-        assert err is None
+        inbox_ref01_data_dt0_loaded = inbox_ref01_ent.load(inbox_ref01_match_dt0, None)
         assert inbox_ref01_data_dt0_loaded is not None
 
 

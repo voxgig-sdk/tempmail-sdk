@@ -182,7 +182,8 @@ class Config {
                     "name": "message_id",
                     "orig": "message_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -190,7 +191,8 @@ class Config {
                     "name": "token",
                     "orig": "token",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -265,7 +267,8 @@ class Config {
                     "name": "domain",
                     "orig": "domain",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -273,7 +276,8 @@ class Config {
                     "name": "username",
                     "orig": "username",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -355,7 +359,8 @@ class Config {
                     "name": "token",
                     "orig": "token",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -393,7 +398,8 @@ class Config {
                     "name": "id",
                     "orig": "message_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -401,7 +407,8 @@ class Config {
                     "name": "token",
                     "orig": "token",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -511,7 +518,8 @@ class Config {
                     "name": "id",
                     "orig": "webhook_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

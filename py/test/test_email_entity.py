@@ -51,8 +51,7 @@ class TestEmailEntity:
         email_ref01_match_dt0 = {
             "id": email_ref01_data["id"],
         }
-        email_ref01_data_dt0_loaded, err = email_ref01_ent.load(email_ref01_match_dt0, None)
-        assert err is None
+        email_ref01_data_dt0_loaded = email_ref01_ent.load(email_ref01_match_dt0, None)
         email_ref01_data_dt0_load_result = helpers.to_map(email_ref01_data_dt0_loaded)
         assert email_ref01_data_dt0_load_result is not None
         assert email_ref01_data_dt0_load_result["id"] == email_ref01_data["id"]

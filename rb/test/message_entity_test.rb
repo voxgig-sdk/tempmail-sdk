@@ -42,16 +42,14 @@ class MessageEntityTest < Minitest::Test
     # LOAD
     message_ref01_ent = client.Message(nil)
     message_ref01_match_dt0 = {}
-    message_ref01_data_dt0_loaded, err = message_ref01_ent.load(message_ref01_match_dt0, nil)
-    assert_nil err
+    message_ref01_data_dt0_loaded = message_ref01_ent.load(message_ref01_match_dt0, nil)
     assert !message_ref01_data_dt0_loaded.nil?
 
     # REMOVE
     message_ref01_match_rm0 = {
       "id" => message_ref01_data["id"],
     }
-    _, err = message_ref01_ent.remove(message_ref01_match_rm0, nil)
-    assert_nil err
+    message_ref01_ent.remove(message_ref01_match_rm0, nil)
 
   end
 end

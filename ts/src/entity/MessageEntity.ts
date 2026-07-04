@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Message,
+  MessageLoadMatch,
+  MessageRemoveMatch,
+} from '../TempmailTypes'
 
 // TODO: needs Entity superclass
-class MessageEntity extends TempmailEntityBase {
+class MessageEntity extends TempmailEntityBase<Message> {
 
   constructor(client: TempmailSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class MessageEntity extends TempmailEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: MessageLoadMatch, ctrl?: Control): Promise<Message> {
 
     const utility = this._utility
 
@@ -136,7 +141,9 @@ class MessageEntity extends TempmailEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Message> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -146,7 +153,7 @@ class MessageEntity extends TempmailEntityBase {
 
 
 
-  async remove(this: any, reqmatch?: any, ctrl?: Control) {
+  async remove(this: any, reqmatch?: MessageRemoveMatch, ctrl?: Control): Promise<Message> {
 
     const utility = this._utility
 
@@ -251,7 +258,9 @@ class MessageEntity extends TempmailEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Message> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -6,6 +6,8 @@ import { InboxEntity } from './entity/InboxEntity'
 import { MessageEntity } from './entity/MessageEntity'
 import { WebhookEntity } from './entity/WebhookEntity'
 
+export type * from './TempmailTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -206,30 +208,70 @@ class TempmailSDK {
 
 
 
+  _domain?: DomainEntity
+
+  // Idiomatic facade: `client.domain.list()` / `client.domain.load({ id })`.
+  get domain(): DomainEntity {
+    return (this._domain ??= new DomainEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.domain` instead. */
   Domain(data?: any) {
     const self = this
     return new DomainEntity(self,data)
   }
 
 
+  _email?: EmailEntity
+
+  // Idiomatic facade: `client.email.list()` / `client.email.load({ id })`.
+  get email(): EmailEntity {
+    return (this._email ??= new EmailEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.email` instead. */
   Email(data?: any) {
     const self = this
     return new EmailEntity(self,data)
   }
 
 
+  _inbox?: InboxEntity
+
+  // Idiomatic facade: `client.inbox.list()` / `client.inbox.load({ id })`.
+  get inbox(): InboxEntity {
+    return (this._inbox ??= new InboxEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.inbox` instead. */
   Inbox(data?: any) {
     const self = this
     return new InboxEntity(self,data)
   }
 
 
+  _message?: MessageEntity
+
+  // Idiomatic facade: `client.message.list()` / `client.message.load({ id })`.
+  get message(): MessageEntity {
+    return (this._message ??= new MessageEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.message` instead. */
   Message(data?: any) {
     const self = this
     return new MessageEntity(self,data)
   }
 
 
+  _webhook?: WebhookEntity
+
+  // Idiomatic facade: `client.webhook.list()` / `client.webhook.load({ id })`.
+  get webhook(): WebhookEntity {
+    return (this._webhook ??= new WebhookEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.webhook` instead. */
   Webhook(data?: any) {
     const self = this
     return new WebhookEntity(self,data)

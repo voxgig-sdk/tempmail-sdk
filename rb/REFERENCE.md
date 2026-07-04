@@ -70,9 +70,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -86,14 +88,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -101,7 +103,7 @@ same parameters as `direct()`.
 ## DomainEntity
 
 ```ruby
-domain = client.Domain
+domain = client.domain
 ```
 
 ### Fields
@@ -112,12 +114,12 @@ domain = client.Domain
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Domain.list(nil)
+results = client.domain.list(nil)
 ```
 
 ### Common Methods
@@ -153,7 +155,7 @@ Return the entity name.
 ## EmailEntity
 
 ```ruby
-email = client.Email
+email = client.email
 ```
 
 ### Fields
@@ -171,12 +173,12 @@ email = client.Email
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Email.load({ "id" => "email_id" })
+result = client.email.load({ "id" => "email_id" })
 ```
 
 ### Common Methods
@@ -212,7 +214,7 @@ Return the entity name.
 ## InboxEntity
 
 ```ruby
-inbox = client.Inbox
+inbox = client.inbox
 ```
 
 ### Fields
@@ -224,21 +226,21 @@ inbox = client.Inbox
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.Inbox.create({
+result = client.inbox.create({
 })
 ```
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Inbox.load({ "id" => "inbox_id" })
+result = client.inbox.load({ "id" => "inbox_id" })
 ```
 
 ### Common Methods
@@ -274,7 +276,7 @@ Return the entity name.
 ## MessageEntity
 
 ```ruby
-message = client.Message
+message = client.message
 ```
 
 ### Fields
@@ -285,20 +287,20 @@ message = client.Message
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Message.load({ "id" => "message_id" })
+result = client.message.load({ "id" => "message_id" })
 ```
 
-#### `remove(reqmatch, ctrl = nil) -> result, err`
+#### `remove(reqmatch, ctrl = nil) -> result`
 
-Remove the entity matching the given criteria.
+Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Message.remove({ "id" => "message_id" })
+result = client.message.remove({ "id" => "message_id" })
 ```
 
 ### Common Methods
@@ -334,7 +336,7 @@ Return the entity name.
 ## WebhookEntity
 
 ```ruby
-webhook = client.Webhook
+webhook = client.webhook
 ```
 
 ### Fields
@@ -348,23 +350,23 @@ webhook = client.Webhook
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.Webhook.create({
+result = client.webhook.create({
   "token" => # `$STRING`,
   "url" => # `$STRING`,
 })
 ```
 
-#### `remove(reqmatch, ctrl = nil) -> result, err`
+#### `remove(reqmatch, ctrl = nil) -> result`
 
-Remove the entity matching the given criteria.
+Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Webhook.remove({ "id" => "webhook_id" })
+result = client.webhook.remove({ "id" => "webhook_id" })
 ```
 
 ### Common Methods

@@ -49,16 +49,14 @@ class TestMessageEntity:
         # LOAD
         message_ref01_ent = client.Message(None)
         message_ref01_match_dt0 = {}
-        message_ref01_data_dt0_loaded, err = message_ref01_ent.load(message_ref01_match_dt0, None)
-        assert err is None
+        message_ref01_data_dt0_loaded = message_ref01_ent.load(message_ref01_match_dt0, None)
         assert message_ref01_data_dt0_loaded is not None
 
         # REMOVE
         message_ref01_match_rm0 = {
             "id": message_ref01_data["id"],
         }
-        _, err = message_ref01_ent.remove(message_ref01_match_rm0, None)
-        assert err is None
+        message_ref01_ent.remove(message_ref01_match_rm0, None)
 
 
 

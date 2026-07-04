@@ -38,15 +38,13 @@ class InboxEntityTest < Minitest::Test
     inbox_ref01_data["domain"] = setup[:idmap]["domain01"]
     inbox_ref01_data["username"] = setup[:idmap]["username01"]
 
-    inbox_ref01_data_result, err = inbox_ref01_ent.create(inbox_ref01_data, nil)
-    assert_nil err
+    inbox_ref01_data_result = inbox_ref01_ent.create(inbox_ref01_data, nil)
     inbox_ref01_data = Helpers.to_map(inbox_ref01_data_result)
     assert !inbox_ref01_data.nil?
 
     # LOAD
     inbox_ref01_match_dt0 = {}
-    inbox_ref01_data_dt0_loaded, err = inbox_ref01_ent.load(inbox_ref01_match_dt0, nil)
-    assert_nil err
+    inbox_ref01_data_dt0_loaded = inbox_ref01_ent.load(inbox_ref01_match_dt0, nil)
     assert !inbox_ref01_data_dt0_loaded.nil?
 
   end

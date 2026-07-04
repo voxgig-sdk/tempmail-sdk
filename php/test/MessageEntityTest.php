@@ -49,16 +49,14 @@ class MessageEntityTest extends TestCase
         // LOAD
         $message_ref01_ent = $client->Message(null);
         $message_ref01_match_dt0 = [];
-        [$message_ref01_data_dt0_loaded, $err] = $message_ref01_ent->load($message_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $message_ref01_data_dt0_loaded = $message_ref01_ent->load($message_ref01_match_dt0, null);
         $this->assertNotNull($message_ref01_data_dt0_loaded);
 
         // REMOVE
         $message_ref01_match_rm0 = [
             "id" => $message_ref01_data["id"],
         ];
-        [$_, $err] = $message_ref01_ent->remove($message_ref01_match_rm0, null);
-        $this->assertNull($err);
+        $message_ref01_ent->remove($message_ref01_match_rm0, null);
 
     }
 }

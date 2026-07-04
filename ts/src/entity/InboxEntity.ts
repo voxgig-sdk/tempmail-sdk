@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Inbox,
+  InboxLoadMatch,
+  InboxCreateData,
+} from '../TempmailTypes'
 
 // TODO: needs Entity superclass
-class InboxEntity extends TempmailEntityBase {
+class InboxEntity extends TempmailEntityBase<Inbox> {
 
   constructor(client: TempmailSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class InboxEntity extends TempmailEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: InboxLoadMatch, ctrl?: Control): Promise<Inbox> {
 
     const utility = this._utility
 
@@ -136,7 +141,9 @@ class InboxEntity extends TempmailEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Inbox> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -144,7 +151,7 @@ class InboxEntity extends TempmailEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: InboxCreateData, ctrl?: Control): Promise<Inbox> {
 
     const utility = this._utility
     const {
@@ -243,7 +250,9 @@ class InboxEntity extends TempmailEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Inbox> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

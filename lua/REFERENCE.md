@@ -100,7 +100,7 @@ same parameters as `direct()`.
 ## DomainEntity
 
 ```lua
-local domain = client:Domain(nil)
+local domain = client:domain(nil)
 ```
 
 ### Fields
@@ -116,7 +116,7 @@ local domain = client:Domain(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Domain():list()
+local results, err = client:domain():list()
 ```
 
 ### Common Methods
@@ -152,7 +152,7 @@ Return the entity name.
 ## EmailEntity
 
 ```lua
-local email = client:Email(nil)
+local email = client:email(nil)
 ```
 
 ### Fields
@@ -175,7 +175,7 @@ local email = client:Email(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Email():load({ id = "email_id" })
+local result, err = client:email():load({ id = "email_id" })
 ```
 
 ### Common Methods
@@ -211,7 +211,7 @@ Return the entity name.
 ## InboxEntity
 
 ```lua
-local inbox = client:Inbox(nil)
+local inbox = client:inbox(nil)
 ```
 
 ### Fields
@@ -228,7 +228,7 @@ local inbox = client:Inbox(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Inbox():create({
+local result, err = client:inbox():create({
 })
 ```
 
@@ -237,7 +237,7 @@ local result, err = client:Inbox():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Inbox():load({ id = "inbox_id" })
+local result, err = client:inbox():load({ id = "inbox_id" })
 ```
 
 ### Common Methods
@@ -273,7 +273,7 @@ Return the entity name.
 ## MessageEntity
 
 ```lua
-local message = client:Message(nil)
+local message = client:message(nil)
 ```
 
 ### Fields
@@ -289,7 +289,7 @@ local message = client:Message(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Message():load({ id = "message_id" })
+local result, err = client:message():load({ id = "message_id" })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -297,7 +297,7 @@ local result, err = client:Message():load({ id = "message_id" })
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Message():remove({ id = "message_id" })
+local result, err = client:message():remove({ id = "message_id" })
 ```
 
 ### Common Methods
@@ -333,7 +333,7 @@ Return the entity name.
 ## WebhookEntity
 
 ```lua
-local webhook = client:Webhook(nil)
+local webhook = client:webhook(nil)
 ```
 
 ### Fields
@@ -352,7 +352,7 @@ local webhook = client:Webhook(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Webhook():create({
+local result, err = client:webhook():create({
   token = --[[ `$STRING` ]],
   url = --[[ `$STRING` ]],
 })
@@ -363,7 +363,7 @@ local result, err = client:Webhook():create({
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Webhook():remove({ id = "webhook_id" })
+local result, err = client:webhook():remove({ id = "webhook_id" })
 ```
 
 ### Common Methods

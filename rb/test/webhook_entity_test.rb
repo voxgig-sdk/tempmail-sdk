@@ -36,8 +36,7 @@ class WebhookEntityTest < Minitest::Test
     webhook_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.webhook"), "webhook_ref01"))
 
-    webhook_ref01_data_result, err = webhook_ref01_ent.create(webhook_ref01_data, nil)
-    assert_nil err
+    webhook_ref01_data_result = webhook_ref01_ent.create(webhook_ref01_data, nil)
     webhook_ref01_data = Helpers.to_map(webhook_ref01_data_result)
     assert !webhook_ref01_data.nil?
 
@@ -45,8 +44,7 @@ class WebhookEntityTest < Minitest::Test
     webhook_ref01_match_rm0 = {
       "id" => webhook_ref01_data["id"],
     }
-    _, err = webhook_ref01_ent.remove(webhook_ref01_match_rm0, nil)
-    assert_nil err
+    webhook_ref01_ent.remove(webhook_ref01_match_rm0, nil)
 
   end
 end

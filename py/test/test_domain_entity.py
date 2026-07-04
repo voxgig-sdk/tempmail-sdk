@@ -50,8 +50,7 @@ class TestDomainEntity:
         domain_ref01_ent = client.Domain(None)
         domain_ref01_match = {}
 
-        domain_ref01_list_result, err = domain_ref01_ent.list(domain_ref01_match, None)
-        assert err is None
+        domain_ref01_list_result = domain_ref01_ent.list(domain_ref01_match, None)
         assert isinstance(domain_ref01_list_result, list)
 
 

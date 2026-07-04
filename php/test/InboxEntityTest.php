@@ -45,15 +45,13 @@ class InboxEntityTest extends TestCase
         $inbox_ref01_data["domain"] = $setup["idmap"]["domain01"];
         $inbox_ref01_data["username"] = $setup["idmap"]["username01"];
 
-        [$inbox_ref01_data_result, $err] = $inbox_ref01_ent->create($inbox_ref01_data, null);
-        $this->assertNull($err);
+        $inbox_ref01_data_result = $inbox_ref01_ent->create($inbox_ref01_data, null);
         $inbox_ref01_data = Helpers::to_map($inbox_ref01_data_result);
         $this->assertNotNull($inbox_ref01_data);
 
         // LOAD
         $inbox_ref01_match_dt0 = [];
-        [$inbox_ref01_data_dt0_loaded, $err] = $inbox_ref01_ent->load($inbox_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $inbox_ref01_data_dt0_loaded = $inbox_ref01_ent->load($inbox_ref01_match_dt0, null);
         $this->assertNotNull($inbox_ref01_data_dt0_loaded);
 
     }

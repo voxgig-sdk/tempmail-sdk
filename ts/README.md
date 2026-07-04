@@ -9,9 +9,12 @@ The TypeScript SDK for the Tempmail API — a type-safe, entity-oriented client 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/tempmail
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/tempmail-sdk/releases](https://github.com/voxgig-sdk/tempmail-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,7 +23,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TempmailSDK } from 'tempmail'
+import { TempmailSDK } from '@voxgig-sdk/tempmail'
 
 const client = new TempmailSDK({
   apikey: process.env.TEMPMAIL_APIKEY,
@@ -30,7 +33,7 @@ const client = new TempmailSDK({
 ### 2. List domains
 
 ```ts
-const result = await client.Domain().list()
+const result = await client.domain.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TempmailSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.domain.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -98,7 +101,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.domain
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -323,7 +326,7 @@ API path: `/webhook`
 
 ### Domain
 
-Create an instance: `const domain = client.Domain()`
+Create an instance: `const domain = client.domain`
 
 #### Operations
 
@@ -340,13 +343,13 @@ Create an instance: `const domain = client.Domain()`
 #### Example: List
 
 ```ts
-const domains = await client.Domain().list()
+const domains = await client.domain.list()
 ```
 
 
 ### Email
 
-Create an instance: `const email = client.Email()`
+Create an instance: `const email = client.email`
 
 #### Operations
 
@@ -370,13 +373,13 @@ Create an instance: `const email = client.Email()`
 #### Example: Load
 
 ```ts
-const email = await client.Email().load({ id: 'email_id' })
+const email = await client.email.load({ id: 'email_id' })
 ```
 
 
 ### Inbox
 
-Create an instance: `const inbox = client.Inbox()`
+Create an instance: `const inbox = client.inbox`
 
 #### Operations
 
@@ -395,20 +398,20 @@ Create an instance: `const inbox = client.Inbox()`
 #### Example: Load
 
 ```ts
-const inbox = await client.Inbox().load({ id: 'inbox_id' })
+const inbox = await client.inbox.load({ id: 'inbox_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const inbox = await client.Inbox().create({
+const inbox = await client.inbox.create({
 })
 ```
 
 
 ### Message
 
-Create an instance: `const message = client.Message()`
+Create an instance: `const message = client.message`
 
 #### Operations
 
@@ -426,13 +429,13 @@ Create an instance: `const message = client.Message()`
 #### Example: Load
 
 ```ts
-const message = await client.Message().load({ id: 'message_id' })
+const message = await client.message.load({ id: 'message_id' })
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.Webhook()`
+Create an instance: `const webhook = client.webhook`
 
 #### Operations
 
@@ -453,7 +456,7 @@ Create an instance: `const webhook = client.Webhook()`
 #### Example: Create
 
 ```ts
-const webhook = await client.Webhook().create({
+const webhook = await client.webhook.create({
   token: /* `$STRING` */,
   url: /* `$STRING` */,
 })
@@ -517,7 +520,7 @@ tempmail/
 Import the SDK from the package root:
 
 ```ts
-import { TempmailSDK } from 'tempmail'
+import { TempmailSDK } from '@voxgig-sdk/tempmail'
 ```
 
 ### Entity state
@@ -527,11 +530,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const domain = client.domain
+await domain.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// domain.data() now returns the loaded domain data
+// domain.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration
