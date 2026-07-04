@@ -97,7 +97,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## DomainEntity
 
 ```python
-domain = client.domain
+domain = client.Domain()
 ```
 
 ### Fields
@@ -113,7 +113,9 @@ domain = client.domain
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.domain.list({})
+results = client.Domain().list({})
+for domain in results:
+    print(domain)
 ```
 
 ### Common Methods
@@ -148,7 +150,7 @@ Return the entity name.
 ## EmailEntity
 
 ```python
-email = client.email
+email = client.Email()
 ```
 
 ### Fields
@@ -171,7 +173,7 @@ email = client.email
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.email.load({"id": "email_id"})
+result = client.Email().load({"id": "email_id"})
 ```
 
 ### Common Methods
@@ -206,7 +208,7 @@ Return the entity name.
 ## InboxEntity
 
 ```python
-inbox = client.inbox
+inbox = client.Inbox()
 ```
 
 ### Fields
@@ -223,7 +225,7 @@ inbox = client.inbox
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.inbox.create({
+result = client.Inbox().create({
 })
 ```
 
@@ -232,7 +234,7 @@ result = client.inbox.create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.inbox.load({"id": "inbox_id"})
+result = client.Inbox().load({"id": "inbox_id"})
 ```
 
 ### Common Methods
@@ -267,7 +269,7 @@ Return the entity name.
 ## MessageEntity
 
 ```python
-message = client.message
+message = client.Message()
 ```
 
 ### Fields
@@ -283,7 +285,7 @@ message = client.message
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.message.load({"id": "message_id"})
+result = client.Message().load({"id": "message_id"})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -291,7 +293,7 @@ result = client.message.load({"id": "message_id"})
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.message.remove({"id": "message_id"})
+result = client.Message().remove({"id": "message_id"})
 ```
 
 ### Common Methods
@@ -326,7 +328,7 @@ Return the entity name.
 ## WebhookEntity
 
 ```python
-webhook = client.webhook
+webhook = client.Webhook()
 ```
 
 ### Fields
@@ -345,9 +347,9 @@ webhook = client.webhook
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.webhook.create({
-    "token": # `$STRING`,
-    "url": # `$STRING`,
+result = client.Webhook().create({
+    "token": ...,  # `$STRING`
+    "url": ...,  # `$STRING`
 })
 ```
 
@@ -356,7 +358,7 @@ result = client.webhook.create({
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.webhook.remove({"id": "webhook_id"})
+result = client.Webhook().remove({"id": "webhook_id"})
 ```
 
 ### Common Methods

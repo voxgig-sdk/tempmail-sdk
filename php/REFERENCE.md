@@ -102,7 +102,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## DomainEntity
 
 ```php
-$domain = $client->domain();
+$domain = $client->Domain();
 ```
 
 ### Fields
@@ -118,7 +118,7 @@ $domain = $client->domain();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->domain()->list([]);
+$results = $client->Domain()->list([]);
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ Return the entity name.
 ## EmailEntity
 
 ```php
-$email = $client->email();
+$email = $client->Email();
 ```
 
 ### Fields
@@ -177,7 +177,7 @@ $email = $client->email();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->email()->load(["id" => "email_id"]);
+$result = $client->Email()->load(["id" => "email_id"]);
 ```
 
 ### Common Methods
@@ -213,7 +213,7 @@ Return the entity name.
 ## InboxEntity
 
 ```php
-$inbox = $client->inbox();
+$inbox = $client->Inbox();
 ```
 
 ### Fields
@@ -230,7 +230,7 @@ $inbox = $client->inbox();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->inbox()->create([
+$result = $client->Inbox()->create([
 ]);
 ```
 
@@ -239,7 +239,7 @@ $result = $client->inbox()->create([
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->inbox()->load(["id" => "inbox_id"]);
+$result = $client->Inbox()->load(["id" => "inbox_id"]);
 ```
 
 ### Common Methods
@@ -275,7 +275,7 @@ Return the entity name.
 ## MessageEntity
 
 ```php
-$message = $client->message();
+$message = $client->Message();
 ```
 
 ### Fields
@@ -291,7 +291,7 @@ $message = $client->message();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->message()->load(["id" => "message_id"]);
+$result = $client->Message()->load(["id" => "message_id"]);
 ```
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -299,7 +299,7 @@ $result = $client->message()->load(["id" => "message_id"]);
 Remove the entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->message()->remove(["id" => "message_id"]);
+$result = $client->Message()->remove(["id" => "message_id"]);
 ```
 
 ### Common Methods
@@ -335,7 +335,7 @@ Return the entity name.
 ## WebhookEntity
 
 ```php
-$webhook = $client->webhook();
+$webhook = $client->Webhook();
 ```
 
 ### Fields
@@ -354,7 +354,7 @@ $webhook = $client->webhook();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->webhook()->create([
+$result = $client->Webhook()->create([
   "token" => /* `$STRING` */,
   "url" => /* `$STRING` */,
 ]);
@@ -365,7 +365,7 @@ $result = $client->webhook()->create([
 Remove the entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->webhook()->remove(["id" => "webhook_id"]);
+$result = $client->Webhook()->remove(["id" => "webhook_id"]);
 ```
 
 ### Common Methods

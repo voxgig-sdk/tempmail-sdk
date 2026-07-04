@@ -33,17 +33,17 @@ local client = sdk.new({
 })
 ```
 
-### 2. List domains
+### 2. List domain records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:domain():list()
+local domains, err = client:Domain():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(domains) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -90,8 +90,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:domain():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Domain():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -172,8 +172,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Domain` | `(data) -> DomainEntity` | Create a Domain entity instance. |
-| `Email` | `(data) -> EmailEntity` | Create a Email entity instance. |
-| `Inbox` | `(data) -> InboxEntity` | Create a Inbox entity instance. |
+| `Email` | `(data) -> EmailEntity` | Create an Email entity instance. |
+| `Inbox` | `(data) -> InboxEntity` | Create an Inbox entity instance. |
 | `Message` | `(data) -> MessageEntity` | Create a Message entity instance. |
 | `Webhook` | `(data) -> WebhookEntity` | Create a Webhook entity instance. |
 
@@ -197,17 +197,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local domain, err = client:Domain():load({ id = "example_id" })
+    if err then error(err) end
+    -- domain is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -279,7 +284,7 @@ API path: `/webhook`
 
 ### Domain
 
-Create an instance: `const domain = client.domain`
+Create an instance: `local domain = client:Domain(nil)`
 
 #### Operations
 
@@ -295,14 +300,14 @@ Create an instance: `const domain = client.domain`
 
 #### Example: List
 
-```ts
-const domains = await client.domain.list()
+```lua
+local domains, err = client:Domain():list()
 ```
 
 
 ### Email
 
-Create an instance: `const email = client.email`
+Create an instance: `local email = client:Email(nil)`
 
 #### Operations
 
@@ -325,14 +330,14 @@ Create an instance: `const email = client.email`
 
 #### Example: Load
 
-```ts
-const email = await client.email.load({ id: 'email_id' })
+```lua
+local email, err = client:Email():load({ id = "email_id" })
 ```
 
 
 ### Inbox
 
-Create an instance: `const inbox = client.inbox`
+Create an instance: `local inbox = client:Inbox(nil)`
 
 #### Operations
 
@@ -350,21 +355,21 @@ Create an instance: `const inbox = client.inbox`
 
 #### Example: Load
 
-```ts
-const inbox = await client.inbox.load({ id: 'inbox_id' })
+```lua
+local inbox, err = client:Inbox():load({ id = "inbox_id" })
 ```
 
 #### Example: Create
 
-```ts
-const inbox = await client.inbox.create({
+```lua
+local inbox, err = client:Inbox():create({
 })
 ```
 
 
 ### Message
 
-Create an instance: `const message = client.message`
+Create an instance: `local message = client:Message(nil)`
 
 #### Operations
 
@@ -381,14 +386,14 @@ Create an instance: `const message = client.message`
 
 #### Example: Load
 
-```ts
-const message = await client.message.load({ id: 'message_id' })
+```lua
+local message, err = client:Message():load({ id = "message_id" })
 ```
 
 
 ### Webhook
 
-Create an instance: `const webhook = client.webhook`
+Create an instance: `local webhook = client:Webhook(nil)`
 
 #### Operations
 
@@ -408,10 +413,10 @@ Create an instance: `const webhook = client.webhook`
 
 #### Example: Create
 
-```ts
-const webhook = await client.webhook.create({
-  token: /* `$STRING` */,
-  url: /* `$STRING` */,
+```lua
+local webhook, err = client:Webhook():create({
+  token = nil, -- `$STRING`
+  url = nil, -- `$STRING`
 })
 ```
 
@@ -487,7 +492,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local domain = client:domain()
+local domain = client:Domain()
 domain:load({ id = "example_id" })
 
 -- domain:data_get() now returns the loaded domain data

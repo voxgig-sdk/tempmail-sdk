@@ -34,7 +34,6 @@ guide: {
     path: "/inbox/{token}/message/{messageId}": {
       rename: param: "messageId": *"id"
       op: remove: method: *DELETE
-      op: remove: transform: res: *("`body.message`")|top
     }
   }
 

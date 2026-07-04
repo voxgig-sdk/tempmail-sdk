@@ -158,7 +158,7 @@ Alias for `TempmailSDK.test()`.
 ## DomainEntity
 
 ```ts
-const domain = client.domain
+const domain = client.Domain()
 ```
 
 ### Fields
@@ -174,7 +174,7 @@ const domain = client.domain
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.domain.list()
+const results = await client.Domain().list()
 ```
 
 ### Common Methods
@@ -208,7 +208,7 @@ Return a copy of the entity options.
 ## EmailEntity
 
 ```ts
-const email = client.email
+const email = client.Email()
 ```
 
 ### Fields
@@ -231,7 +231,7 @@ const email = client.email
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.email.load({ id: 'email_id' })
+const result = await client.Email().load({ id: 'email_id' })
 ```
 
 ### Common Methods
@@ -265,7 +265,7 @@ Return a copy of the entity options.
 ## InboxEntity
 
 ```ts
-const inbox = client.inbox
+const inbox = client.Inbox()
 ```
 
 ### Fields
@@ -282,7 +282,7 @@ const inbox = client.inbox
 Create a new entity with the given data.
 
 ```ts
-const result = await client.inbox.create({
+const result = await client.Inbox().create({
 })
 ```
 
@@ -291,7 +291,7 @@ const result = await client.inbox.create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.inbox.load({ id: 'inbox_id' })
+const result = await client.Inbox().load({ id: 'inbox_id' })
 ```
 
 ### Common Methods
@@ -325,7 +325,7 @@ Return a copy of the entity options.
 ## MessageEntity
 
 ```ts
-const message = client.message
+const message = client.Message()
 ```
 
 ### Fields
@@ -341,7 +341,7 @@ const message = client.message
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.message.load({ id: 'message_id' })
+const result = await client.Message().load({ id: 'message_id' })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -349,7 +349,7 @@ const result = await client.message.load({ id: 'message_id' })
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.message.remove({ id: 'message_id' })
+const result = await client.Message().remove({ id: 'message_id' })
 ```
 
 ### Common Methods
@@ -383,7 +383,7 @@ Return a copy of the entity options.
 ## WebhookEntity
 
 ```ts
-const webhook = client.webhook
+const webhook = client.Webhook()
 ```
 
 ### Fields
@@ -402,7 +402,7 @@ const webhook = client.webhook
 Create a new entity with the given data.
 
 ```ts
-const result = await client.webhook.create({
+const result = await client.Webhook().create({
   token: /* `$STRING` */,
   url: /* `$STRING` */,
 })
@@ -413,7 +413,7 @@ const result = await client.webhook.create({
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.webhook.remove({ id: 'webhook_id' })
+const result = await client.Webhook().remove({ id: 'webhook_id' })
 ```
 
 ### Common Methods

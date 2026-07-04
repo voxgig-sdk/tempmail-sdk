@@ -103,7 +103,7 @@ same parameters as `direct()`. Raises on error.
 ## DomainEntity
 
 ```ruby
-domain = client.domain
+domain = client.Domain
 ```
 
 ### Fields
@@ -119,7 +119,7 @@ domain = client.domain
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.domain.list(nil)
+results = client.Domain.list(nil)
 ```
 
 ### Common Methods
@@ -155,7 +155,7 @@ Return the entity name.
 ## EmailEntity
 
 ```ruby
-email = client.email
+email = client.Email
 ```
 
 ### Fields
@@ -178,7 +178,7 @@ email = client.email
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.email.load({ "id" => "email_id" })
+result = client.Email.load({ "id" => "email_id" })
 ```
 
 ### Common Methods
@@ -214,7 +214,7 @@ Return the entity name.
 ## InboxEntity
 
 ```ruby
-inbox = client.inbox
+inbox = client.Inbox
 ```
 
 ### Fields
@@ -231,7 +231,7 @@ inbox = client.inbox
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.inbox.create({
+result = client.Inbox.create({
 })
 ```
 
@@ -240,7 +240,7 @@ result = client.inbox.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.inbox.load({ "id" => "inbox_id" })
+result = client.Inbox.load({ "id" => "inbox_id" })
 ```
 
 ### Common Methods
@@ -276,7 +276,7 @@ Return the entity name.
 ## MessageEntity
 
 ```ruby
-message = client.message
+message = client.Message
 ```
 
 ### Fields
@@ -292,7 +292,7 @@ message = client.message
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.message.load({ "id" => "message_id" })
+result = client.Message.load({ "id" => "message_id" })
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -300,7 +300,7 @@ result = client.message.load({ "id" => "message_id" })
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.message.remove({ "id" => "message_id" })
+result = client.Message.remove({ "id" => "message_id" })
 ```
 
 ### Common Methods
@@ -336,7 +336,7 @@ Return the entity name.
 ## WebhookEntity
 
 ```ruby
-webhook = client.webhook
+webhook = client.Webhook
 ```
 
 ### Fields
@@ -355,7 +355,7 @@ webhook = client.webhook
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.webhook.create({
+result = client.Webhook.create({
   "token" => # `$STRING`,
   "url" => # `$STRING`,
 })
@@ -366,7 +366,7 @@ result = client.webhook.create({
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.webhook.remove({ "id" => "webhook_id" })
+result = client.Webhook.remove({ "id" => "webhook_id" })
 ```
 
 ### Common Methods

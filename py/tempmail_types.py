@@ -4,91 +4,85 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Domain:
-    domain: Optional[list] = None
+class Domain(TypedDict, total=False):
+    domain: list
 
 
-@dataclass
-class DomainListMatch:
-    domain: Optional[list] = None
+class DomainListMatch(TypedDict, total=False):
+    domain: list
 
 
-@dataclass
-class Email:
-    attachment: Optional[list] = None
-    body: Optional[str] = None
-    date: Optional[str] = None
-    html: Optional[str] = None
-    id: Optional[str] = None
-    subject: Optional[str] = None
-    to: Optional[str] = None
+class Email(TypedDict, total=False):
+    attachment: list
+    body: str
+    date: str
+    html: str
+    id: str
+    subject: str
+    to: str
 
 
-@dataclass
-class EmailLoadMatch:
+class EmailLoadMatch(TypedDict):
     message_id: str
     token: str
 
 
-@dataclass
-class Inbox:
-    address: Optional[str] = None
-    token: Optional[str] = None
+class Inbox(TypedDict, total=False):
+    address: str
+    token: str
 
 
-@dataclass
-class InboxLoadMatch:
-    address: Optional[str] = None
-    token: Optional[str] = None
+class InboxLoadMatch(TypedDict, total=False):
+    address: str
+    token: str
 
 
-@dataclass
-class InboxCreateData:
+class InboxCreateData(TypedDict):
     domain: str
     username: str
 
 
-@dataclass
-class Message:
-    email: Optional[list] = None
+class Message(TypedDict, total=False):
+    email: list
 
 
-@dataclass
-class MessageLoadMatch:
+class MessageLoadMatch(TypedDict):
     token: str
 
 
-@dataclass
-class MessageRemoveMatch:
+class MessageRemoveMatch(TypedDict):
     id: str
     token: str
 
 
-@dataclass
-class Webhook:
+class WebhookRequired(TypedDict):
     token: str
     url: str
-    success: Optional[bool] = None
-    webhook_id: Optional[str] = None
 
 
-@dataclass
-class WebhookCreateData:
-    success: Optional[bool] = None
-    token: Optional[str] = None
-    url: Optional[str] = None
-    webhook_id: Optional[str] = None
+class Webhook(WebhookRequired, total=False):
+    success: bool
+    webhook_id: str
 
 
-@dataclass
-class WebhookRemoveMatch:
+class WebhookCreateData(TypedDict, total=False):
+    success: bool
+    token: str
+    url: str
+    webhook_id: str
+
+
+class WebhookRemoveMatch(TypedDict):
     id: str
-

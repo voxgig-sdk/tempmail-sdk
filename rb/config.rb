@@ -395,7 +395,7 @@ module TempmailConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body.message`",
+                    "res" => "`body`",
                   },
                   "index$" => 0,
                 },

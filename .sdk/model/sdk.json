@@ -378,7 +378,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body.message`"
+                    "res": "`body`"
                   }
                 }
               ]
