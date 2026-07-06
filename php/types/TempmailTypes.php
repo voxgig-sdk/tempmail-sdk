@@ -18,7 +18,7 @@ class Domain
     public ?array $domain = null;
 }
 
-/** Match filter for Domain#list (any subset of Domain fields). */
+/** Request payload for Domain#list. */
 class DomainListMatch
 {
     public ?array $domain = null;
@@ -51,7 +51,7 @@ class Inbox
     public ?string $token = null;
 }
 
-/** Match filter for Inbox#load (any subset of Inbox fields). */
+/** Request payload for Inbox#load. */
 class InboxLoadMatch
 {
     public ?string $address = null;
@@ -93,12 +93,12 @@ class Webhook
     public ?string $webhook_id = null;
 }
 
-/** Match filter for Webhook#create (any subset of Webhook fields). */
+/** Request payload for Webhook#create. */
 class WebhookCreateData
 {
     public ?bool $success = null;
-    public ?string $token = null;
-    public ?string $url = null;
+    public string $token;
+    public string $url;
     public ?string $webhook_id = null;
 }
 

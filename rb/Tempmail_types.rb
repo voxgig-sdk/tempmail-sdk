@@ -17,7 +17,7 @@ Domain = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Domain#list (any subset of Domain fields).
+# Request payload for Domain#list.
 #
 # @!attribute [rw] domain
 #   @return [Array, nil]
@@ -89,7 +89,7 @@ Inbox = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Inbox#load (any subset of Inbox fields).
+# Request payload for Inbox#load.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
@@ -167,16 +167,16 @@ Webhook = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Webhook#create (any subset of Webhook fields).
+# Request payload for Webhook#create.
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] token
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] url
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] webhook_id
 #   @return [String, nil]

@@ -8,7 +8,7 @@ Complete API reference for the Tempmail Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'tempmail_sdk'
+require_relative 'Tempmail_sdk'
 
 client = TempmailSDK.new(options)
 ```
@@ -110,16 +110,16 @@ domain = client.Domain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
+| `domain` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Domain.list(nil)
+results = client.Domain.list
 ```
 
 ### Common Methods
@@ -162,14 +162,14 @@ email = client.Email
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `Array` | No |  |
+| `body` | `String` | No |  |
+| `date` | `String` | No |  |
+| `from` | `String` | No |  |
+| `html` | `String` | No |  |
+| `id` | `String` | No |  |
+| `subject` | `String` | No |  |
+| `to` | `String` | No |  |
 
 ### Operations
 
@@ -178,7 +178,7 @@ email = client.Email
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Email.load({ "id" => "email_id" })
+result = client.Email.load()
 ```
 
 ### Common Methods
@@ -221,8 +221,8 @@ inbox = client.Inbox
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `address` | `String` | No |  |
+| `token` | `String` | No |  |
 
 ### Operations
 
@@ -240,7 +240,7 @@ result = client.Inbox.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Inbox.load({ "id" => "inbox_id" })
+result = client.Inbox.load()
 ```
 
 ### Common Methods
@@ -283,7 +283,7 @@ message = client.Message
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$ARRAY`` | No |  |
+| `email` | `Array` | No |  |
 
 ### Operations
 
@@ -292,7 +292,7 @@ message = client.Message
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Message.load({ "id" => "message_id" })
+result = client.Message.load()
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -300,7 +300,7 @@ result = client.Message.load({ "id" => "message_id" })
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Message.remove({ "id" => "message_id" })
+result = client.Message.remove()
 ```
 
 ### Common Methods
@@ -343,10 +343,10 @@ webhook = client.Webhook
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `webhook_id` | ``$STRING`` | No |  |
+| `success` | `Boolean` | No |  |
+| `token` | `String` | Yes |  |
+| `url` | `String` | Yes |  |
+| `webhook_id` | `String` | No |  |
 
 ### Operations
 
@@ -356,8 +356,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Webhook.create({
-  "token" => # `$STRING`,
-  "url" => # `$STRING`,
+  "token" => "example", # String
+  "url" => "example", # String
 })
 ```
 
@@ -366,7 +366,7 @@ result = client.Webhook.create({
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Webhook.remove({ "id" => "webhook_id" })
+result = client.Webhook.remove()
 ```
 
 ### Common Methods

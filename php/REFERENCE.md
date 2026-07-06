@@ -62,11 +62,11 @@ Create a new `MessageEntity` instance. Pass `null` for no initial data.
 
 Create a new `WebhookEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): TempmailUtility`
 
 Return a copy of the SDK utility object.
 
@@ -109,33 +109,33 @@ $domain = $client->Domain();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
+| `domain` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Domain()->list([]);
+$results = $client->Domain()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -144,7 +144,7 @@ Set the entity match criteria.
 Create a new `DomainEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -161,14 +161,14 @@ $email = $client->Email();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `array` | No |  |
+| `body` | `string` | No |  |
+| `date` | `string` | No |  |
+| `from` | `string` | No |  |
+| `html` | `string` | No |  |
+| `id` | `string` | No |  |
+| `subject` | `string` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 
@@ -177,24 +177,24 @@ $email = $client->Email();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Email()->load(["id" => "email_id"]);
+$result = $client->Email()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -203,7 +203,7 @@ Set the entity match criteria.
 Create a new `EmailEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -220,8 +220,8 @@ $inbox = $client->Inbox();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `token` | `string` | No |  |
 
 ### Operations
 
@@ -239,24 +239,24 @@ $result = $client->Inbox()->create([
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Inbox()->load(["id" => "inbox_id"]);
+$result = $client->Inbox()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -265,7 +265,7 @@ Set the entity match criteria.
 Create a new `InboxEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -282,7 +282,7 @@ $message = $client->Message();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$ARRAY`` | No |  |
+| `email` | `array` | No |  |
 
 ### Operations
 
@@ -291,7 +291,7 @@ $message = $client->Message();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Message()->load(["id" => "message_id"]);
+$result = $client->Message()->load();
 ```
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -299,24 +299,24 @@ $result = $client->Message()->load(["id" => "message_id"]);
 Remove the entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Message()->remove(["id" => "message_id"]);
+$result = $client->Message()->remove();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -325,7 +325,7 @@ Set the entity match criteria.
 Create a new `MessageEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -342,10 +342,10 @@ $webhook = $client->Webhook();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `webhook_id` | ``$STRING`` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `string` | Yes |  |
+| `url` | `string` | Yes |  |
+| `webhook_id` | `string` | No |  |
 
 ### Operations
 
@@ -355,8 +355,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Webhook()->create([
-  "token" => /* `$STRING` */,
-  "url" => /* `$STRING` */,
+  "token" => null, // string
+  "url" => null, // string
 ]);
 ```
 
@@ -365,24 +365,24 @@ $result = $client->Webhook()->create([
 Remove the entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Webhook()->remove(["id" => "webhook_id"]);
+$result = $client->Webhook()->remove();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -391,7 +391,7 @@ Set the entity match criteria.
 Create a new `WebhookEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

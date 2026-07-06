@@ -10,6 +10,7 @@
 ---@field domain? table
 
 ---@class DomainListMatch
+---@field domain? table
 
 ---@class Email
 ---@field attachment? table
@@ -30,6 +31,8 @@
 ---@field token? string
 
 ---@class InboxLoadMatch
+---@field address? string
+---@field token? string
 
 ---@class InboxCreateData
 ---@field domain string
@@ -52,6 +55,10 @@
 ---@field webhook_id? string
 
 ---@class WebhookCreateData
+---@field success? boolean
+---@field token string
+---@field url string
+---@field webhook_id? string
 
 ---@class WebhookRemoveMatch
 ---@field id string

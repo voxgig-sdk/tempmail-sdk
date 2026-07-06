@@ -114,7 +114,7 @@ domain := client.Domain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
+| `domain` | `[]any` | No |  |
 
 ### Operations
 
@@ -160,14 +160,14 @@ email := client.Email(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `[]any` | No |  |
+| `body` | `string` | No |  |
+| `date` | `string` | No |  |
+| `from` | `string` | No |  |
+| `html` | `string` | No |  |
+| `id` | `string` | No |  |
+| `subject` | `string` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 
@@ -176,7 +176,7 @@ email := client.Email(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Email(nil).Load(map[string]any{"id": "email_id"}, nil)
+result, err := client.Email(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -213,8 +213,8 @@ inbox := client.Inbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `token` | `string` | No |  |
 
 ### Operations
 
@@ -232,7 +232,7 @@ result, err := client.Inbox(nil).Create(map[string]any{
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Inbox(nil).Load(map[string]any{"id": "inbox_id"}, nil)
+result, err := client.Inbox(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -269,7 +269,7 @@ message := client.Message(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$ARRAY`` | No |  |
+| `email` | `[]any` | No |  |
 
 ### Operations
 
@@ -278,7 +278,7 @@ message := client.Message(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Message(nil).Load(map[string]any{"id": "message_id"}, nil)
+result, err := client.Message(nil).Load(nil, nil)
 ```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
@@ -286,7 +286,7 @@ result, err := client.Message(nil).Load(map[string]any{"id": "message_id"}, nil)
 Remove the entity matching the given criteria.
 
 ```go
-result, err := client.Message(nil).Remove(map[string]any{"id": "message_id"}, nil)
+result, err := client.Message(nil).Remove(nil, nil)
 ```
 
 ### Common Methods
@@ -323,10 +323,10 @@ webhook := client.Webhook(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `webhook_id` | ``$STRING`` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `string` | Yes |  |
+| `url` | `string` | Yes |  |
+| `webhook_id` | `string` | No |  |
 
 ### Operations
 
@@ -336,8 +336,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Webhook(nil).Create(map[string]any{
-    "token": /* `$STRING` */,
-    "url": /* `$STRING` */,
+    "token": /* string */,
+    "url": /* string */,
 }, nil)
 ```
 
@@ -346,7 +346,7 @@ result, err := client.Webhook(nil).Create(map[string]any{
 Remove the entity matching the given criteria.
 
 ```go
-result, err := client.Webhook(nil).Remove(map[string]any{"id": "webhook_id"}, nil)
+result, err := client.Webhook(nil).Remove(nil, nil)
 ```
 
 ### Common Methods

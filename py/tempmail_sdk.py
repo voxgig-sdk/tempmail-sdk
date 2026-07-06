@@ -221,31 +221,31 @@ class TempmailSDK:
 
 
     def Domain(self, data=None) -> "DomainEntity":
-        """Entity factory: client.Domain().list({}) / client.Domain().load({"id": ...})."""
+        """Entity factory: client.Domain().list() / client.Domain().load({"id": ...})."""
         from entity.domain_entity import DomainEntity
         return DomainEntity(self, data)
 
 
     def Email(self, data=None) -> "EmailEntity":
-        """Entity factory: client.Email().list({}) / client.Email().load({"id": ...})."""
+        """Entity factory: client.Email().list() / client.Email().load({"id": ...})."""
         from entity.email_entity import EmailEntity
         return EmailEntity(self, data)
 
 
     def Inbox(self, data=None) -> "InboxEntity":
-        """Entity factory: client.Inbox().list({}) / client.Inbox().load({"id": ...})."""
+        """Entity factory: client.Inbox().list() / client.Inbox().load({"id": ...})."""
         from entity.inbox_entity import InboxEntity
         return InboxEntity(self, data)
 
 
     def Message(self, data=None) -> "MessageEntity":
-        """Entity factory: client.Message().list({}) / client.Message().load({"id": ...})."""
+        """Entity factory: client.Message().list() / client.Message().load({"id": ...})."""
         from entity.message_entity import MessageEntity
         return MessageEntity(self, data)
 
 
     def Webhook(self, data=None) -> "WebhookEntity":
-        """Entity factory: client.Webhook().list({}) / client.Webhook().load({"id": ...})."""
+        """Entity factory: client.Webhook().list() / client.Webhook().load({"id": ...})."""
         from entity.webhook_entity import WebhookEntity
         return WebhookEntity(self, data)
 

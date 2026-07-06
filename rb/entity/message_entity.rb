@@ -67,10 +67,12 @@ class MessageEntity
   
   # Load a single Message.
   #
-  # @param reqmatch [MessageLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [MessageLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.Message.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [Message, Hash] the loaded Message; raises TempmailError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",
@@ -104,7 +106,7 @@ class MessageEntity
   # @param reqmatch [MessageRemoveMatch, Hash, nil] match criteria (id/query fields)
   # @param ctrl [Object, nil] optional per-call control
   # @return [Message, Hash] the removed Message; raises TempmailError on failure
-  def remove(reqmatch, ctrl = nil)
+  def remove(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "remove",

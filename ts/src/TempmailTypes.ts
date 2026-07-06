@@ -9,7 +9,9 @@ export interface Domain {
   domain?: any[]
 }
 
-export type DomainListMatch = Partial<Domain>
+export interface DomainListMatch {
+  domain?: any[]
+}
 
 export interface Email {
   attachment?: any[]
@@ -32,7 +34,10 @@ export interface Inbox {
   token?: string
 }
 
-export type InboxLoadMatch = Partial<Inbox>
+export interface InboxLoadMatch {
+  address?: string
+  token?: string
+}
 
 export interface InboxCreateData {
   domain: string
@@ -59,7 +64,12 @@ export interface Webhook {
   webhook_id?: string
 }
 
-export type WebhookCreateData = Partial<Webhook>
+export interface WebhookCreateData {
+  success?: boolean
+  token: string
+  url: string
+  webhook_id?: string
+}
 
 export interface WebhookRemoveMatch {
   id: string

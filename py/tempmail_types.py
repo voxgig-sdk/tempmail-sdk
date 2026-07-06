@@ -77,10 +77,13 @@ class Webhook(WebhookRequired, total=False):
     webhook_id: str
 
 
-class WebhookCreateData(TypedDict, total=False):
-    success: bool
+class WebhookCreateDataRequired(TypedDict):
     token: str
     url: str
+
+
+class WebhookCreateData(WebhookCreateDataRequired, total=False):
+    success: bool
     webhook_id: str
 
 

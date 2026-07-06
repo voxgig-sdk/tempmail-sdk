@@ -103,7 +103,7 @@ class WebhookEntity
   # @param reqmatch [WebhookRemoveMatch, Hash, nil] match criteria (id/query fields)
   # @param ctrl [Object, nil] optional per-call control
   # @return [Webhook, Hash] the removed Webhook; raises TempmailError on failure
-  def remove(reqmatch, ctrl = nil)
+  def remove(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "remove",

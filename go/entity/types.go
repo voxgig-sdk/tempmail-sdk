@@ -13,8 +13,7 @@ type Domain struct {
 	Domain *[]any `json:"domain,omitempty"`
 }
 
-// DomainListMatch mirrors the domain fields as an all-optional match
-// filter (Go analog of Partial<Domain>).
+// DomainListMatch is the typed request payload for Domain.ListTyped.
 type DomainListMatch struct {
 	Domain *[]any `json:"domain,omitempty"`
 }
@@ -43,8 +42,7 @@ type Inbox struct {
 	Token *string `json:"token,omitempty"`
 }
 
-// InboxLoadMatch mirrors the inbox fields as an all-optional match
-// filter (Go analog of Partial<Inbox>).
+// InboxLoadMatch is the typed request payload for Inbox.LoadTyped.
 type InboxLoadMatch struct {
 	Address *string `json:"address,omitempty"`
 	Token *string `json:"token,omitempty"`
@@ -80,12 +78,11 @@ type Webhook struct {
 	WebhookId *string `json:"webhook_id,omitempty"`
 }
 
-// WebhookCreateData mirrors the webhook fields as an all-optional match
-// filter (Go analog of Partial<Webhook>).
+// WebhookCreateData is the typed request payload for Webhook.CreateTyped.
 type WebhookCreateData struct {
 	Success *bool `json:"success,omitempty"`
-	Token *string `json:"token,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Token string `json:"token"`
+	Url string `json:"url"`
 	WebhookId *string `json:"webhook_id,omitempty"`
 }
 

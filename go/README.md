@@ -4,6 +4,8 @@
 
 The Golang SDK for the Tempmail API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Domain(nil)` — each with the same small set of operations (`List`, `Load`, `Create`, `Remove`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -63,6 +65,35 @@ func main() {
 ```
 
 
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+domains, err := client.Domain(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = domains
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -109,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-domain, err := client.Domain(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+domain, err := client.Domain(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(domain) // the loaded mock data
+fmt.Println(domain) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -209,7 +240,6 @@ All entities implement the `TempmailEntity` interface.
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
 | `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
 | `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
@@ -223,16 +253,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` / `Create` / `Remove` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    domain, err := client.Domain(nil).Load(map[string]any{"id": "example_id"}, nil)
+    domain, err := client.Domain(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // domain is the loaded record
+    // domain is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -319,7 +349,7 @@ Create an instance: `domain := client.Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$ARRAY`` |  |
+| `domain` | `[]any` |  |
 
 #### Example: List
 
@@ -346,19 +376,19 @@ Create an instance: `email := client.Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | ``$ARRAY`` |  |
-| `body` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `from` | ``$STRING`` |  |
-| `html` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `subject` | ``$STRING`` |  |
-| `to` | ``$STRING`` |  |
+| `attachment` | `[]any` |  |
+| `body` | `string` |  |
+| `date` | `string` |  |
+| `from` | `string` |  |
+| `html` | `string` |  |
+| `id` | `string` |  |
+| `subject` | `string` |  |
+| `to` | `string` |  |
 
 #### Example: Load
 
 ```go
-email, err := client.Email(nil).Load(map[string]any{"id": "email_id"}, nil)
+email, err := client.Email(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -381,13 +411,13 @@ Create an instance: `inbox := client.Inbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `token` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `token` | `string` |  |
 
 #### Example: Load
 
 ```go
-inbox, err := client.Inbox(nil).Load(map[string]any{"id": "inbox_id"}, nil)
+inbox, err := client.Inbox(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -417,12 +447,12 @@ Create an instance: `message := client.Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | ``$ARRAY`` |  |
+| `email` | `[]any` |  |
 
 #### Example: Load
 
 ```go
-message, err := client.Message(nil).Load(map[string]any{"id": "message_id"}, nil)
+message, err := client.Message(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -445,27 +475,31 @@ Create an instance: `webhook := client.Webhook(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `success` | ``$BOOLEAN`` |  |
-| `token` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `webhook_id` | ``$STRING`` |  |
+| `success` | `bool` |  |
+| `token` | `string` |  |
+| `url` | `string` |  |
+| `webhook_id` | `string` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.Webhook(nil).Create(map[string]any{
-    "token": /* `$STRING` */,
-    "url": /* `$STRING` */,
+    "token": /* string */,
+    "url": /* string */,
 }, nil)
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -482,9 +516,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -525,14 +559,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 domain := client.Domain(nil)
-domain.Load(map[string]any{"id": "example_id"}, nil)
+domain.List(nil, nil)
 
-// domain.Data() now returns the loaded domain data
+// domain.Data() now returns the domain data from the last list
 // domain.Match() returns the last match criteria
 ```
 

@@ -104,16 +104,16 @@ domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
+| `domain` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Domain().list({})
+results = client.Domain().list()
 for domain in results:
     print(domain)
 ```
@@ -157,14 +157,14 @@ email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `list` | No |  |
+| `body` | `str` | No |  |
+| `date` | `str` | No |  |
+| `from` | `str` | No |  |
+| `html` | `str` | No |  |
+| `id` | `str` | No |  |
+| `subject` | `str` | No |  |
+| `to` | `str` | No |  |
 
 ### Operations
 
@@ -173,7 +173,7 @@ email = client.Email()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Email().load({"id": "email_id"})
+result = client.Email().load()
 ```
 
 ### Common Methods
@@ -215,8 +215,8 @@ inbox = client.Inbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `address` | `str` | No |  |
+| `token` | `str` | No |  |
 
 ### Operations
 
@@ -234,7 +234,7 @@ result = client.Inbox().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Inbox().load({"id": "inbox_id"})
+result = client.Inbox().load()
 ```
 
 ### Common Methods
@@ -276,7 +276,7 @@ message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$ARRAY`` | No |  |
+| `email` | `list` | No |  |
 
 ### Operations
 
@@ -285,7 +285,7 @@ message = client.Message()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Message().load({"id": "message_id"})
+result = client.Message().load()
 ```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -293,7 +293,7 @@ result = client.Message().load({"id": "message_id"})
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.Message().remove({"id": "message_id"})
+result = client.Message().remove()
 ```
 
 ### Common Methods
@@ -335,10 +335,10 @@ webhook = client.Webhook()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `webhook_id` | ``$STRING`` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `str` | Yes |  |
+| `url` | `str` | Yes |  |
+| `webhook_id` | `str` | No |  |
 
 ### Operations
 
@@ -348,8 +348,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Webhook().create({
-    "token": ...,  # `$STRING`
-    "url": ...,  # `$STRING`
+    "token": "example",  # str
+    "url": "example",  # str
 })
 ```
 
@@ -358,7 +358,7 @@ result = client.Webhook().create({
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.Webhook().remove({"id": "webhook_id"})
+result = client.Webhook().remove()
 ```
 
 ### Common Methods
