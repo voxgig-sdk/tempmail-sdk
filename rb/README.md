@@ -46,6 +46,20 @@ rescue => err
 end
 ```
 
+### 3. Load an email
+
+Email is nested under message, so provide the `message_id`.
+
+```ruby
+begin
+  # load returns the bare Email record (raises on error).
+  email = client.Email.load({ "message_id" => "example_message_id", "token" => "example_token" })
+  puts email
+rescue => err
+  warn "load failed: #{err}"
+end
+```
+
 
 ## Error handling
 
@@ -360,7 +374,7 @@ Create an instance: `email = client.Email`
 
 ```ruby
 # load returns the bare Email record (raises on error).
-email = client.Email.load()
+email = client.Email.load({ "message_id" => "message_id", "token" => "token" })
 ```
 
 
@@ -393,6 +407,8 @@ inbox = client.Inbox.load()
 
 ```ruby
 inbox = client.Inbox.create({
+  "domain" => "example_domain", # String
+  "username" => "example_username", # String
 })
 ```
 
@@ -418,7 +434,7 @@ Create an instance: `message = client.Message`
 
 ```ruby
 # load returns the bare Message record (raises on error).
-message = client.Message.load()
+message = client.Message.load({ "token" => "token" })
 ```
 
 
@@ -446,8 +462,8 @@ Create an instance: `webhook = client.Webhook`
 
 ```ruby
 webhook = client.Webhook.create({
-  "token" => "example", # String
-  "url" => "example", # String
+  "token" => "example_token", # String
+  "url" => "example_url", # String
 })
 ```
 

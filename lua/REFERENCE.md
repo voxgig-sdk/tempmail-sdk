@@ -175,7 +175,7 @@ local email = client:Email(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Email():load()
+local result, err = client:Email():load({ message_id = "message_id", token = "token" })
 ```
 
 ### Common Methods
@@ -229,6 +229,8 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Inbox():create({
+  domain = --[[ string ]],
+  username = --[[ string ]],
 })
 ```
 
@@ -289,7 +291,7 @@ local message = client:Message(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Message():load()
+local result, err = client:Message():load({ token = "token" })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -297,7 +299,7 @@ local result, err = client:Message():load()
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Message():remove()
+local result, err = client:Message():remove({ id = "id", token = "token" })
 ```
 
 ### Common Methods
@@ -363,7 +365,7 @@ local result, err = client:Webhook():create({
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Webhook():remove()
+local result, err = client:Webhook():remove({ id = "id" })
 ```
 
 ### Common Methods

@@ -49,6 +49,16 @@ for _, item in ipairs(domains) do
 end
 ```
 
+### 3. Load an email
+
+Email is nested under message, so provide the `message_id`.
+
+```lua
+local email, err = client:Email():load({ message_id = "example_message_id", token = "example_token" })
+if err then error(err) end
+print(email)
+```
+
 
 ## Error handling
 
@@ -354,7 +364,7 @@ Create an instance: `local email = client:Email(nil)`
 #### Example: Load
 
 ```lua
-local email, err = client:Email():load()
+local email, err = client:Email():load({ message_id = "message_id", token = "token" })
 ```
 
 
@@ -386,6 +396,8 @@ local inbox, err = client:Inbox():load()
 
 ```lua
 local inbox, err = client:Inbox():create({
+  domain = "example_domain", -- string
+  username = "example_username", -- string
 })
 ```
 
@@ -410,7 +422,7 @@ Create an instance: `local message = client:Message(nil)`
 #### Example: Load
 
 ```lua
-local message, err = client:Message():load()
+local message, err = client:Message():load({ token = "token" })
 ```
 
 
@@ -438,8 +450,8 @@ Create an instance: `local webhook = client:Webhook(nil)`
 
 ```lua
 local webhook, err = client:Webhook():create({
-  token = nil, -- string
-  url = nil, -- string
+  token = "example_token", -- string
+  url = "example_url", -- string
 })
 ```
 

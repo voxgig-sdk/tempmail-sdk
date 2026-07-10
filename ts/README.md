@@ -47,6 +47,23 @@ for (const domain of domains) {
 }
 ```
 
+### 3. Load an email
+
+Email is nested under message, so provide the `message_id`.
+`load()` returns the entity directly and throws on failure:
+
+```ts
+try {
+  const email = await client.Email().load({
+    message_id: 'example_message_id',
+    token: 'example_token',
+  })
+  console.log(email)
+} catch (err) {
+  console.error('load failed:', err)
+}
+```
+
 
 ## Error handling
 
@@ -410,7 +427,7 @@ Create an instance: `const email = client.Email()`
 #### Example: Load
 
 ```ts
-const email = await client.Email().load()
+const email = await client.Email().load({ message_id: 'message_id', token: 'token' })
 ```
 
 
@@ -442,6 +459,8 @@ const inbox = await client.Inbox().load()
 
 ```ts
 const inbox = await client.Inbox().create({
+  domain: 'example_domain',
+  username: 'example_username',
 })
 ```
 
@@ -466,7 +485,7 @@ Create an instance: `const message = client.Message()`
 #### Example: Load
 
 ```ts
-const message = await client.Message().load()
+const message = await client.Message().load({ token: 'token' })
 ```
 
 
@@ -494,8 +513,8 @@ Create an instance: `const webhook = client.Webhook()`
 
 ```ts
 const webhook = await client.Webhook().create({
-  token: /* string */,
-  url: /* string */,
+  token: 'example_token',
+  url: 'example_url',
 })
 ```
 

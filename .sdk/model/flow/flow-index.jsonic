@@ -1,7 +1,0 @@
-# Flows
-
-@"BasicDomainFlow.jsonic"
-@"BasicEmailFlow.jsonic"
-@"BasicInboxFlow.jsonic"
-@"BasicMessageFlow.jsonic"
-@"BasicWebhookFlow.jsonic"

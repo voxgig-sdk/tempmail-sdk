@@ -231,7 +231,7 @@ const email = client.Email()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Email().load()
+const result = await client.Email().load({ message_id: 'message_id', token: 'token' })
 ```
 
 ### Common Methods
@@ -283,6 +283,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Inbox().create({
+  domain: 'example_domain',
+  username: 'example_username',
 })
 ```
 
@@ -341,7 +343,7 @@ const message = client.Message()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Message().load()
+const result = await client.Message().load({ token: 'token' })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -349,7 +351,7 @@ const result = await client.Message().load()
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.Message().remove()
+const result = await client.Message().remove({ id: 'id', token: 'token' })
 ```
 
 ### Common Methods
@@ -403,8 +405,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Webhook().create({
-  token: /* string */,
-  url: /* string */,
+  token: 'example_token',
+  url: 'example_url',
 })
 ```
 
@@ -413,7 +415,7 @@ const result = await client.Webhook().create({
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.Webhook().remove()
+const result = await client.Webhook().remove({ id: 'id' })
 ```
 
 ### Common Methods

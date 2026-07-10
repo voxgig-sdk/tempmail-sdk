@@ -53,6 +53,19 @@ except Exception as err:
     print(f"list failed: {err}")
 ```
 
+### 3. Load an email
+
+Email is nested under message, so provide the `message_id`.
+`load()` returns the bare record (a `dict`) and raises on error.
+
+```python
+try:
+    email = client.Email().load({"message_id": "example_message_id", "token": "example_token"})
+    print(email)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
 
 ## Error handling
 
@@ -365,7 +378,7 @@ Create an instance: `email = client.Email()`
 #### Example: Load
 
 ```python
-email = client.Email().load()
+email = client.Email().load({"message_id": "message_id", "token": "token"})
 ```
 
 
@@ -397,6 +410,8 @@ inbox = client.Inbox().load()
 
 ```python
 inbox = client.Inbox().create({
+    "domain": "example_domain",  # str
+    "username": "example_username",  # str
 })
 ```
 
@@ -421,7 +436,7 @@ Create an instance: `message = client.Message()`
 #### Example: Load
 
 ```python
-message = client.Message().load()
+message = client.Message().load({"token": "token"})
 ```
 
 
@@ -449,8 +464,8 @@ Create an instance: `webhook = client.Webhook()`
 
 ```python
 webhook = client.Webhook().create({
-    "token": "example",  # str
-    "url": "example",  # str
+    "token": "example_token",  # str
+    "url": "example_url",  # str
 })
 ```
 

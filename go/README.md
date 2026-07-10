@@ -388,7 +388,7 @@ Create an instance: `email := client.Email(nil)`
 #### Example: Load
 
 ```go
-email, err := client.Email(nil).Load(nil, nil)
+email, err := client.Email(nil).Load(map[string]any{"message_id": "message_id", "token": "token"}, nil)
 if err != nil {
     panic(err)
 }
@@ -404,8 +404,8 @@ Create an instance: `inbox := client.Inbox(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -428,7 +428,13 @@ fmt.Println(inbox) // the loaded record
 
 ```go
 result, err := client.Inbox(nil).Create(map[string]any{
+    "domain": "example_domain",
+    "username": "example_username",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -452,7 +458,7 @@ Create an instance: `message := client.Message(nil)`
 #### Example: Load
 
 ```go
-message, err := client.Message(nil).Load(nil, nil)
+message, err := client.Message(nil).Load(map[string]any{"token": "token"}, nil)
 if err != nil {
     panic(err)
 }
@@ -484,9 +490,13 @@ Create an instance: `webhook := client.Webhook(nil)`
 
 ```go
 result, err := client.Webhook(nil).Create(map[string]any{
-    "token": /* string */,
-    "url": /* string */,
+    "token": "example_token",
+    "url": "example_url",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

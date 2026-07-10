@@ -177,7 +177,7 @@ $email = $client->Email();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Email()->load();
+$result = $client->Email()->load(["message_id" => "message_id", "token" => "token"]);
 ```
 
 ### Common Methods
@@ -231,6 +231,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Inbox()->create([
+  "domain" => null, // string
+  "username" => null, // string
 ]);
 ```
 
@@ -291,7 +293,7 @@ $message = $client->Message();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Message()->load();
+$result = $client->Message()->load(["token" => "token"]);
 ```
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -299,7 +301,7 @@ $result = $client->Message()->load();
 Remove the entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Message()->remove();
+$result = $client->Message()->remove(["id" => "id", "token" => "token"]);
 ```
 
 ### Common Methods
@@ -365,7 +367,7 @@ $result = $client->Webhook()->create([
 Remove the entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Webhook()->remove();
+$result = $client->Webhook()->remove(["id" => "id"]);
 ```
 
 ### Common Methods

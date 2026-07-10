@@ -173,7 +173,7 @@ email = client.Email()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Email().load()
+result = client.Email().load({"message_id": "message_id", "token": "token"})
 ```
 
 ### Common Methods
@@ -226,6 +226,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Inbox().create({
+    "domain": "example_domain",  # str
+    "username": "example_username",  # str
 })
 ```
 
@@ -285,7 +287,7 @@ message = client.Message()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Message().load()
+result = client.Message().load({"token": "token"})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
@@ -293,7 +295,7 @@ result = client.Message().load()
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.Message().remove()
+result = client.Message().remove({"id": "id", "token": "token"})
 ```
 
 ### Common Methods
@@ -348,8 +350,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Webhook().create({
-    "token": "example",  # str
-    "url": "example",  # str
+    "token": "example_token",  # str
+    "url": "example_url",  # str
 })
 ```
 
@@ -358,7 +360,7 @@ result = client.Webhook().create({
 Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result = client.Webhook().remove()
+result = client.Webhook().remove({"id": "id"})
 ```
 
 ### Common Methods

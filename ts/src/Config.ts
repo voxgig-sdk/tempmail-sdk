@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.tempmail.lol',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

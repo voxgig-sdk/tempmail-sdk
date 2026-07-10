@@ -47,6 +47,20 @@ try {
 }
 ```
 
+### 3. Load an email
+
+Email is nested under message, so provide the `message_id`.
+
+```php
+try {
+    // load() returns the bare Email record (throws on error).
+    $email = $client->Email()->load(["message_id" => "example_message_id", "token" => "example_token"]);
+    print_r($email);
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
 
 ## Error handling
 
@@ -370,7 +384,7 @@ Create an instance: `$email = $client->Email();`
 
 ```php
 // load() returns the bare Email record (throws on error).
-$email = $client->Email()->load();
+$email = $client->Email()->load(["message_id" => "message_id", "token" => "token"]);
 ```
 
 
@@ -403,6 +417,8 @@ $inbox = $client->Inbox()->load();
 
 ```php
 $inbox = $client->Inbox()->create([
+    "domain" => null, // string
+    "username" => null, // string
 ]);
 ```
 
@@ -428,7 +444,7 @@ Create an instance: `$message = $client->Message();`
 
 ```php
 // load() returns the bare Message record (throws on error).
-$message = $client->Message()->load();
+$message = $client->Message()->load(["token" => "token"]);
 ```
 
 

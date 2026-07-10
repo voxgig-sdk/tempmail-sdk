@@ -21,7 +21,7 @@ class TempmailConfig
             "options" => [
                 "base" => "https://api.tempmail.lol",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

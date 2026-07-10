@@ -178,7 +178,7 @@ email = client.Email
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Email.load()
+result = client.Email.load({ "message_id" => "message_id", "token" => "token" })
 ```
 
 ### Common Methods
@@ -232,6 +232,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Inbox.create({
+  "domain" => "example_domain", # String
+  "username" => "example_username", # String
 })
 ```
 
@@ -292,7 +294,7 @@ message = client.Message
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Message.load()
+result = client.Message.load({ "token" => "token" })
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -300,7 +302,7 @@ result = client.Message.load()
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Message.remove()
+result = client.Message.remove({ "id" => "id", "token" => "token" })
 ```
 
 ### Common Methods
@@ -356,8 +358,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Webhook.create({
-  "token" => "example", # String
-  "url" => "example", # String
+  "token" => "example_token", # String
+  "url" => "example_url", # String
 })
 ```
 
@@ -366,7 +368,7 @@ result = client.Webhook.create({
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Webhook.remove()
+result = client.Webhook.remove({ "id" => "id" })
 ```
 
 ### Common Methods

@@ -108,6 +108,7 @@ same parameters as `Direct()`.
 
 ```go
 domain := client.Domain(nil)
+fmt.Println(domain.GetName()) // "domain"
 ```
 
 ### Fields
@@ -124,6 +125,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Domain(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -154,6 +159,7 @@ Return the entity name.
 
 ```go
 email := client.Email(nil)
+fmt.Println(email.GetName()) // "email"
 ```
 
 ### Fields
@@ -176,7 +182,11 @@ email := client.Email(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Email(nil).Load(nil, nil)
+result, err := client.Email(nil).Load(map[string]any{"message_id": "message_id", "token": "token"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -207,6 +217,7 @@ Return the entity name.
 
 ```go
 inbox := client.Inbox(nil)
+fmt.Println(inbox.GetName()) // "inbox"
 ```
 
 ### Fields
@@ -218,21 +229,31 @@ inbox := client.Inbox(nil)
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.Inbox(nil).Create(map[string]any{
-}, nil)
-```
-
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
 Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Inbox(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Inbox(nil).Create(map[string]any{
+    "domain": "example_domain",
+    "username": "example_username",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -263,6 +284,7 @@ Return the entity name.
 
 ```go
 message := client.Message(nil)
+fmt.Println(message.GetName()) // "message"
 ```
 
 ### Fields
@@ -278,7 +300,11 @@ message := client.Message(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Message(nil).Load(nil, nil)
+result, err := client.Message(nil).Load(map[string]any{"token": "token"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
@@ -286,7 +312,11 @@ result, err := client.Message(nil).Load(nil, nil)
 Remove the entity matching the given criteria.
 
 ```go
-result, err := client.Message(nil).Remove(nil, nil)
+result, err := client.Message(nil).Remove(map[string]any{"id": "id", "token": "token"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -317,6 +347,7 @@ Return the entity name.
 
 ```go
 webhook := client.Webhook(nil)
+fmt.Println(webhook.GetName()) // "webhook"
 ```
 
 ### Fields
@@ -336,9 +367,13 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Webhook(nil).Create(map[string]any{
-    "token": /* string */,
-    "url": /* string */,
+    "token": "example_token",
+    "url": "example_url",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
@@ -346,7 +381,11 @@ result, err := client.Webhook(nil).Create(map[string]any{
 Remove the entity matching the given criteria.
 
 ```go
-result, err := client.Webhook(nil).Remove(nil, nil)
+result, err := client.Webhook(nil).Remove(map[string]any{"id": "id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
