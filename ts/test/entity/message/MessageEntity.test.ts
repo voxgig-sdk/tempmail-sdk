@@ -64,11 +64,6 @@ describe('MessageEntity', async () => {
     const message_ref01_ent = client.Message()
 
 
-    // REMOVE
-    const message_ref01_match_rm0: any = { id: message_ref01_data.id }
-    await message_ref01_ent.remove(message_ref01_match_rm0)
-  
-
   })
 })
 
