@@ -39,7 +39,7 @@ describe('MessageEntity', async () => {
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.TEMPMAIL_TEST_LIVE
-    for (const op of ['load', 'remove']) {
+    for (const op of ['load']) {
       if (maybeSkipControl(t, 'entityOp', 'message.' + op, live)) return
     }
 

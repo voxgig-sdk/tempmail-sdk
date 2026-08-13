@@ -46,7 +46,7 @@ class InboxEntityTest extends TestCase
         $inbox_ref01_data["username"] = $setup["idmap"]["username01"];
 
         $inbox_ref01_data_result = $inbox_ref01_ent->create($inbox_ref01_data, null);
-        $inbox_ref01_data = Helpers::to_map($inbox_ref01_data_result);
+        $inbox_ref01_data = Helpers::to_map(is_object($inbox_ref01_data_result) && method_exists($inbox_ref01_data_result, 'data_get') ? $inbox_ref01_data_result->data_get() : $inbox_ref01_data_result);
         $this->assertNotNull($inbox_ref01_data);
 
         // LOAD

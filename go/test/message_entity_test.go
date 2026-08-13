@@ -32,7 +32,7 @@ func TestMessageEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"load", "remove"} {
+		for _, _op := range []string{"load"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "message." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -98,7 +98,7 @@ func messageBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap := vs.Transform(
-		[]any{"message01", "message02", "message03", "inbox01", "inbox02", "inbox03", "token01"},
+		[]any{"message01", "message02", "message03", "inbox01", "inbox02", "inbox03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

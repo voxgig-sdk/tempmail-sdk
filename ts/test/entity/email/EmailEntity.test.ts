@@ -63,7 +63,7 @@ describe('EmailEntity', async () => {
     const email_ref01_ent = client.Email()
     const email_ref01_match_dt0: any = {}
     email_ref01_match_dt0.id = email_ref01_data.id
-    const email_ref01_data_dt0 = await email_ref01_ent.load(email_ref01_match_dt0)
+    const email_ref01_data_dt0 = (await email_ref01_ent.load(email_ref01_match_dt0)).data()
     assert(email_ref01_data_dt0.id === email_ref01_data.id)
 
 

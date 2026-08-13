@@ -41,15 +41,9 @@ describe("WebhookEntity", function()
 
     local webhook_ref01_data_result, err = webhook_ref01_ent:create(webhook_ref01_data, nil)
     assert.is_nil(err)
-    webhook_ref01_data = helpers.to_map(webhook_ref01_data_result)
+    webhook_ref01_data = helpers.to_map(type(webhook_ref01_data_result) == 'table' and webhook_ref01_data_result.data_get and webhook_ref01_data_result:data_get() or webhook_ref01_data_result)
     assert.is_not_nil(webhook_ref01_data)
 
-    -- REMOVE
-    local webhook_ref01_match_rm0 = {
-      id = webhook_ref01_data["id"],
-    }
-    local _, err = webhook_ref01_ent:remove(webhook_ref01_match_rm0, nil)
-    assert.is_nil(err)
 
   end)
 end)

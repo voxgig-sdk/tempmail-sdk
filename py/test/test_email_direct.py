@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from tempmail_sdk.utility.voxgig_struct import voxgig_struct as vs
 from tempmail_sdk import TempmailSDK
-from core import helpers
+from tempmail_sdk.core import helpers
 from test import runner
 
 

@@ -33,7 +33,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "domain",
+            ["name"] = "domains",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -48,6 +48,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/domains",
                 ["parts"] = {
@@ -56,7 +57,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.domains`",
                 },
                 ["index$"] = 0,
               },
@@ -72,7 +73,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "attachment",
+            ["name"] = "attachments",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -157,6 +158,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/inbox/{token}/message/{messageId}",
                 ["parts"] = {
@@ -242,6 +244,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/custom/{username}@{domain}",
                 ["parts"] = {
@@ -270,6 +273,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/generate",
                 ["parts"] = {
@@ -298,7 +302,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "email",
+            ["name"] = "emails",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -325,6 +329,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/inbox/{token}",
                 ["parts"] = {
@@ -373,6 +378,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/inbox/{token}/message/{messageId}",
                 ["parts"] = {
@@ -435,7 +441,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "webhook_id",
+            ["name"] = "webhookId",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
@@ -450,6 +456,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/webhook",
                 ["parts"] = {
@@ -484,6 +491,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/webhook/{webhookId}",
                 ["parts"] = {

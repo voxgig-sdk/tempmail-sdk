@@ -34,7 +34,7 @@ module TempmailConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "domain",
+              "name" => "domains",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -49,6 +49,7 @@ module TempmailConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/domains",
                   "parts" => [
@@ -57,7 +58,7 @@ module TempmailConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.domains`",
                   },
                   "index$" => 0,
                 },
@@ -73,7 +74,7 @@ module TempmailConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "attachment",
+              "name" => "attachments",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -158,6 +159,7 @@ module TempmailConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/inbox/{token}/message/{messageId}",
                   "parts" => [
@@ -243,6 +245,7 @@ module TempmailConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/custom/{username}@{domain}",
                   "parts" => [
@@ -271,6 +274,7 @@ module TempmailConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/generate",
                   "parts" => [
@@ -299,7 +303,7 @@ module TempmailConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "email",
+              "name" => "emails",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -326,6 +330,7 @@ module TempmailConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/inbox/{token}",
                   "parts" => [
@@ -374,6 +379,7 @@ module TempmailConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/inbox/{token}/message/{messageId}",
                   "parts" => [
@@ -436,7 +442,7 @@ module TempmailConfig
             },
             {
               "active" => true,
-              "name" => "webhook_id",
+              "name" => "webhookId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 3,
@@ -451,6 +457,7 @@ module TempmailConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/webhook",
                   "parts" => [
@@ -485,6 +492,7 @@ module TempmailConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/webhook/{webhookId}",
                   "parts" => [

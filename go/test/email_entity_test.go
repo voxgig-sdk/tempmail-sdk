@@ -68,7 +68,7 @@ func TestEmailEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		emailRef01DataDt0LoadResult := core.ToMapAny(emailRef01DataDt0Loaded)
+		emailRef01DataDt0LoadResult := core.ToMapAny(entityData(emailRef01DataDt0Loaded))
 		if emailRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

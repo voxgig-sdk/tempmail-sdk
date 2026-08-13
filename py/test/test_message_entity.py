@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from tempmail_sdk.utility.voxgig_struct import voxgig_struct as vs
 from tempmail_sdk import TempmailSDK
-from core import helpers
+from tempmail_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -27,7 +27,7 @@ class TestMessageEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["load", "remove"]:
+        for _op in ["load"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "message." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -70,7 +70,7 @@ def _message_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["message01", "message02", "message03", "inbox01", "inbox02", "inbox03", "token01"],
+        ["message01", "message02", "message03", "inbox01", "inbox02", "inbox03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

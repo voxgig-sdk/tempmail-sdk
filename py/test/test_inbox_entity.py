@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from tempmail_sdk.utility.voxgig_struct import voxgig_struct as vs
 from tempmail_sdk import TempmailSDK
-from core import helpers
+from tempmail_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -46,7 +46,7 @@ class TestInboxEntity:
         inbox_ref01_data["domain"] = setup["idmap"]["domain01"]
         inbox_ref01_data["username"] = setup["idmap"]["username01"]
 
-        inbox_ref01_data = helpers.to_map(inbox_ref01_ent.create(inbox_ref01_data, None))
+        inbox_ref01_data = helpers.to_map(runner.entity_data(inbox_ref01_ent.create(inbox_ref01_data, None)))
         assert inbox_ref01_data is not None
 
         # LOAD

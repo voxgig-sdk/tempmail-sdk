@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TempmailSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TempmailSDK.test({
+  entity: {
+    domain: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const domains = await client.Domain().list()
-// domains is an array of bare Domain records populated with mock data
+// domains is an array of Domain entities, populated with mock data
+// — call domains[0].data() for the record itself
 console.log(domains)
 ```
 
@@ -112,7 +121,7 @@ const client = new TempmailSDK({
   apikey: process.env.TEMPMAIL_APIKEY,
 })
 
-// List all domains (returns Domain[])
+// List all domains (returns DomainEntity[] — .data() for the record)
 const domains = await client.Domain().list()
 for (const domain of domains) {
   console.log(domain)
@@ -166,7 +175,7 @@ The API exposes 5 entities:
 | --- | --- | --- |
 | **Domain** | The Domain entity (list). | `/domains` |
 | **Email** | The Email entity (load). | `/inbox/{token}/message/{messageId}` |
-| **Inbox** | The Inbox entity (create, load). | `/custom/{username}@{domain}` |
+| **Inbox** | The Inbox entity (create, load). | `/generate` |
 | **Message** | The Message entity (load, remove). | `/inbox/{token}` |
 | **Webhook** | The Webhook entity (create, remove). | `/webhook` |
 
@@ -376,6 +385,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://tempmail.lol/en/api#getting-started](https://tempmail.lol/en/api#getting-started)
 

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Tempmail',
   }
 
 
@@ -72,7 +72,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "domain",
+          "name": "domains",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -87,6 +87,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/domains",
               "parts": [
@@ -95,7 +96,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.domains`"
               },
               "index$": 0
             }
@@ -111,7 +112,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "attachment",
+          "name": "attachments",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -196,6 +197,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/inbox/{token}/message/{messageId}",
               "parts": [
@@ -281,6 +283,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "POST",
               "orig": "/custom/{username}@{domain}",
               "parts": [
@@ -309,6 +312,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/generate",
               "parts": [
@@ -337,7 +341,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "email",
+          "name": "emails",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -364,6 +368,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/inbox/{token}",
               "parts": [
@@ -412,6 +417,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "DELETE",
               "orig": "/inbox/{token}/message/{messageId}",
               "parts": [
@@ -474,7 +480,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "webhook_id",
+          "name": "webhookId",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
@@ -489,6 +495,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/webhook",
               "parts": [
@@ -523,6 +530,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "DELETE",
               "orig": "/webhook/{webhookId}",
               "parts": [

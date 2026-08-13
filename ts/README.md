@@ -37,7 +37,9 @@ const client = new TempmailSDK({
 
 ### 2. List domain records
 
-`list()` resolves to an array of Domain objects — iterate it directly:
+`list()` resolves to an array of Domain ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const domains = await client.Domain().list()
@@ -139,7 +141,8 @@ Create a mock client for unit testing — no server required:
 const client = TempmailSDK.test()
 
 const domain = await client.Domain().list()
-// domain is a bare entity populated with mock response data
+// domain is the entity, populated with mock response data
+// — call domain.data() for the record itself
 console.log(domain)
 ```
 
@@ -316,7 +319,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 
 Operations: list.
 
@@ -326,7 +329,7 @@ API path: `/domains`
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `date` |  |
 | `from` |  |
@@ -354,7 +357,7 @@ API path: `/custom/{username}@{domain}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
+| `emails` |  |
 
 Operations: load, remove.
 
@@ -367,7 +370,7 @@ API path: `/inbox/{token}`
 | `success` |  |
 | `token` |  |
 | `url` |  |
-| `webhook_id` |  |
+| `webhookId` |  |
 
 Operations: create, remove.
 
@@ -392,7 +395,7 @@ Create an instance: `const domain = client.Domain()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `any[]` |  |
+| `domains` | `any[]` |  |
 
 #### Example: List
 
@@ -415,7 +418,7 @@ Create an instance: `const email = client.Email()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `any[]` |  |
+| `attachments` | `any[]` |  |
 | `body` | `string` |  |
 | `date` | `string` |  |
 | `from` | `string` |  |
@@ -480,7 +483,7 @@ Create an instance: `const message = client.Message()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `any[]` |  |
+| `emails` | `any[]` |  |
 
 #### Example: Load
 
@@ -507,7 +510,7 @@ Create an instance: `const webhook = client.Webhook()`
 | `success` | `boolean` |  |
 | `token` | `string` |  |
 | `url` | `string` |  |
-| `webhook_id` | `string` |  |
+| `webhookId` | `string` |  |
 
 #### Example: Create
 

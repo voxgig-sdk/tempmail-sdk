@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from tempmail_sdk.utility.voxgig_struct import voxgig_struct as vs
 from tempmail_sdk import TempmailSDK
-from core import helpers
+from tempmail_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -52,7 +52,7 @@ class TestEmailEntity:
             "id": email_ref01_data["id"],
         }
         email_ref01_data_dt0_loaded = email_ref01_ent.load(email_ref01_match_dt0, None)
-        email_ref01_data_dt0_load_result = helpers.to_map(email_ref01_data_dt0_loaded)
+        email_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(email_ref01_data_dt0_loaded))
         assert email_ref01_data_dt0_load_result is not None
         assert email_ref01_data_dt0_load_result["id"] == email_ref01_data["id"]
 

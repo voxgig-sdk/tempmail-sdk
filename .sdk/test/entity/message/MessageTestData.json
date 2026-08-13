@@ -2,17 +2,17 @@
   "existing": {
     "message": {
       "MESSAGE00": {
-        "email": [],
+        "emails": [],
         "token": "TOKEN01",
         "id": "MESSAGE00"
       },
       "MESSAGE01": {
-        "email": [],
+        "emails": [],
         "token": "TOKEN01",
         "id": "MESSAGE01"
       },
       "MESSAGE02": {
-        "email": [],
+        "emails": [],
         "token": "TOKEN01",
         "id": "MESSAGE02"
       }
@@ -21,7 +21,7 @@
   "new": {
     "message": {
       "message_ref01": {
-        "email": []
+        "emails": []
       }
     }
   }

@@ -43,7 +43,7 @@ describe("InboxEntity", function()
 
     local inbox_ref01_data_result, err = inbox_ref01_ent:create(inbox_ref01_data, nil)
     assert.is_nil(err)
-    inbox_ref01_data = helpers.to_map(inbox_ref01_data_result)
+    inbox_ref01_data = helpers.to_map(type(inbox_ref01_data_result) == 'table' and inbox_ref01_data_result.data_get and inbox_ref01_data_result:data_get() or inbox_ref01_data_result)
     assert.is_not_nil(inbox_ref01_data)
 
     -- LOAD

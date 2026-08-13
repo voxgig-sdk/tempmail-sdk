@@ -2,7 +2,7 @@
   "existing": {
     "email": {
       "EMAIL00": {
-        "attachment": [],
+        "attachments": [],
         "body": "s51",
         "date": "s52",
         "from": "s53",
@@ -14,7 +14,7 @@
         "token": "TOKEN01"
       },
       "EMAIL01": {
-        "attachment": [],
+        "attachments": [],
         "body": "sa1",
         "date": "sa2",
         "from": "sa3",
@@ -26,7 +26,7 @@
         "token": "TOKEN01"
       },
       "EMAIL02": {
-        "attachment": [],
+        "attachments": [],
         "body": "sf1",
         "date": "sf2",
         "from": "sf3",
@@ -42,7 +42,7 @@
   "new": {
     "email": {
       "email_ref01": {
-        "attachment": [],
+        "attachments": [],
         "body": "s141",
         "date": "s142",
         "from": "s143",

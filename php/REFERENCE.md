@@ -109,7 +109,7 @@ $domain = $client->Domain();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `array` | No |  |
+| `domains` | `array` | No |  |
 
 ### Operations
 
@@ -161,7 +161,7 @@ $email = $client->Email();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `array` | No |  |
+| `attachments` | `array` | No |  |
 | `body` | `string` | No |  |
 | `date` | `string` | No |  |
 | `from` | `string` | No |  |
@@ -284,7 +284,7 @@ $message = $client->Message();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `array` | No |  |
+| `emails` | `array` | No |  |
 
 ### Operations
 
@@ -347,7 +347,7 @@ $webhook = $client->Webhook();
 | `success` | `bool` | No |  |
 | `token` | `string` | Yes |  |
 | `url` | `string` | Yes |  |
-| `webhook_id` | `string` | No |  |
+| `webhookId` | `string` | No |  |
 
 ### Operations
 

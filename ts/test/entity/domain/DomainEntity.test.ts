@@ -63,7 +63,7 @@ describe('DomainEntity', async () => {
     const domain_ref01_ent = client.Domain()
     const domain_ref01_match: any = {}
 
-    const domain_ref01_list = await domain_ref01_ent.list(domain_ref01_match)
+    const domain_ref01_list = (await domain_ref01_ent.list(domain_ref01_match)).map((e: any) => e.data())
 
 
   })

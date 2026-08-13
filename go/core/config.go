@@ -33,7 +33,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "domain",
+						"name": "domains",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
@@ -48,6 +48,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/domains",
 								"parts": []any{
@@ -56,12 +57,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.domains`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -72,7 +72,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "attachment",
+						"name": "attachments",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
@@ -157,6 +157,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/inbox/{token}/message/{messageId}",
 								"parts": []any{
@@ -183,7 +184,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -242,6 +242,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/custom/{username}@{domain}",
 								"parts": []any{
@@ -261,7 +262,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -270,6 +270,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/generate",
 								"parts": []any{
@@ -283,7 +284,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -298,7 +298,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "email",
+						"name": "emails",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
@@ -325,6 +325,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/inbox/{token}",
 								"parts": []any{
@@ -343,7 +344,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 					"remove": map[string]any{
 						"input": "data",
@@ -373,6 +373,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "DELETE",
 								"orig": "/inbox/{token}/message/{messageId}",
 								"parts": []any{
@@ -399,7 +400,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "remove",
 					},
 				},
 				"relations": map[string]any{
@@ -435,7 +435,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "webhook_id",
+						"name": "webhookId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 3,
@@ -450,6 +450,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/webhook",
 								"parts": []any{
@@ -463,7 +464,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 					"remove": map[string]any{
 						"input": "data",
@@ -484,6 +484,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "DELETE",
 								"orig": "/webhook/{webhookId}",
 								"parts": []any{
@@ -507,7 +508,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "remove",
 					},
 				},
 				"relations": map[string]any{

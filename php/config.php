@@ -39,7 +39,7 @@ class TempmailConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'domain',
+              'name' => 'domains',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -54,6 +54,7 @@ class TempmailConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/domains',
                   'parts' => [
@@ -62,7 +63,7 @@ class TempmailConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.domains`',
                   ],
                   'index$' => 0,
                 ],
@@ -78,7 +79,7 @@ class TempmailConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'attachment',
+              'name' => 'attachments',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -163,6 +164,7 @@ class TempmailConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/inbox/{token}/message/{messageId}',
                   'parts' => [
@@ -248,6 +250,7 @@ class TempmailConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/custom/{username}@{domain}',
                   'parts' => [
@@ -276,6 +279,7 @@ class TempmailConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/generate',
                   'parts' => [
@@ -304,7 +308,7 @@ class TempmailConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'email',
+              'name' => 'emails',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -331,6 +335,7 @@ class TempmailConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/inbox/{token}',
                   'parts' => [
@@ -379,6 +384,7 @@ class TempmailConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'DELETE',
                   'orig' => '/inbox/{token}/message/{messageId}',
                   'parts' => [
@@ -441,7 +447,7 @@ class TempmailConfig
             ],
             [
               'active' => true,
-              'name' => 'webhook_id',
+              'name' => 'webhookId',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 3,
@@ -456,6 +462,7 @@ class TempmailConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/webhook',
                   'parts' => [
@@ -490,6 +497,7 @@ class TempmailConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'DELETE',
                   'orig' => '/webhook/{webhookId}',
                   'parts' => [

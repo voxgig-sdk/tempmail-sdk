@@ -107,7 +107,7 @@ local domain = client:Domain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `table` | No |  |
+| `domains` | `table` | No |  |
 
 ### Operations
 
@@ -159,7 +159,7 @@ local email = client:Email(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `table` | No |  |
+| `attachments` | `table` | No |  |
 | `body` | `string` | No |  |
 | `date` | `string` | No |  |
 | `from` | `string` | No |  |
@@ -282,7 +282,7 @@ local message = client:Message(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `table` | No |  |
+| `emails` | `table` | No |  |
 
 ### Operations
 
@@ -345,7 +345,7 @@ local webhook = client:Webhook(nil)
 | `success` | `boolean` | No |  |
 | `token` | `string` | Yes |  |
 | `url` | `string` | Yes |  |
-| `webhook_id` | `string` | No |  |
+| `webhookId` | `string` | No |  |
 
 ### Operations
 

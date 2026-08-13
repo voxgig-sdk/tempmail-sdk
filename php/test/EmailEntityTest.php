@@ -52,7 +52,7 @@ class EmailEntityTest extends TestCase
             "id" => $email_ref01_data["id"],
         ];
         $email_ref01_data_dt0_loaded = $email_ref01_ent->load($email_ref01_match_dt0, null);
-        $email_ref01_data_dt0_load_result = Helpers::to_map($email_ref01_data_dt0_loaded);
+        $email_ref01_data_dt0_load_result = Helpers::to_map(is_object($email_ref01_data_dt0_loaded) && method_exists($email_ref01_data_dt0_loaded, 'data_get') ? $email_ref01_data_dt0_loaded->data_get() : $email_ref01_data_dt0_loaded);
         $this->assertNotNull($email_ref01_data_dt0_load_result);
         $this->assertEquals($email_ref01_data_dt0_load_result["id"], $email_ref01_data["id"]);
 

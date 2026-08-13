@@ -8,6 +8,7 @@ guide: {
   entity: domain: {
     path: "/domains": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.domains`")|top
     }
   }
 

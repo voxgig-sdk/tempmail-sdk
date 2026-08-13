@@ -273,7 +273,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"domain"` |  |
+| `"domains"` |  |
 
 Operations: List.
 
@@ -283,7 +283,7 @@ API path: `/domains`
 
 | Field | Description |
 | --- | --- |
-| `"attachment"` |  |
+| `"attachments"` |  |
 | `"body"` |  |
 | `"date"` |  |
 | `"from"` |  |
@@ -311,7 +311,7 @@ API path: `/custom/{username}@{domain}`
 
 | Field | Description |
 | --- | --- |
-| `"email"` |  |
+| `"emails"` |  |
 
 Operations: Load, Remove.
 
@@ -324,7 +324,7 @@ API path: `/inbox/{token}`
 | `"success"` |  |
 | `"token"` |  |
 | `"url"` |  |
-| `"webhook_id"` |  |
+| `"webhookId"` |  |
 
 Operations: Create, Remove.
 
@@ -349,7 +349,7 @@ Create an instance: `domain := client.Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `[]any` |  |
+| `domains` | `[]any` |  |
 
 #### Example: List
 
@@ -376,7 +376,7 @@ Create an instance: `email := client.Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `[]any` |  |
+| `attachments` | `[]any` |  |
 | `body` | `string` |  |
 | `date` | `string` |  |
 | `from` | `string` |  |
@@ -453,7 +453,7 @@ Create an instance: `message := client.Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `[]any` |  |
+| `emails` | `[]any` |  |
 
 #### Example: Load
 
@@ -484,7 +484,7 @@ Create an instance: `webhook := client.Webhook(nil)`
 | `success` | `bool` |  |
 | `token` | `string` |  |
 | `url` | `string` |  |
-| `webhook_id` | `string` |  |
+| `webhookId` | `string` |  |
 
 #### Example: Create
 

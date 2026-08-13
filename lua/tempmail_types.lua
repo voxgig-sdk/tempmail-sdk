@@ -7,13 +7,13 @@
 -- edit by hand.
 
 ---@class Domain
----@field domain? table
+---@field domains? table
 
 ---@class DomainListMatch
----@field domain? table
+---@field domains? table
 
 ---@class Email
----@field attachment? table
+---@field attachments? table
 ---@field body? string
 ---@field date? string
 ---@field from? string
@@ -37,9 +37,11 @@
 ---@class InboxCreateData
 ---@field domain string
 ---@field username string
+---@field address? string
+---@field token? string
 
 ---@class Message
----@field email? table
+---@field emails? table
 
 ---@class MessageLoadMatch
 ---@field token string
@@ -52,13 +54,13 @@
 ---@field success? boolean
 ---@field token string
 ---@field url string
----@field webhook_id? string
+---@field webhookId? string
 
 ---@class WebhookCreateData
 ---@field success? boolean
 ---@field token string
 ---@field url string
----@field webhook_id? string
+---@field webhookId? string
 
 ---@class WebhookRemoveMatch
 ---@field id string

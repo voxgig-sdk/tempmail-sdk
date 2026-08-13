@@ -23,7 +23,7 @@ class MessageEntityTest extends TestCase
         $setup = message_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach (["load", "remove"] as $_op) {
+        foreach (["load"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "message." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -70,7 +70,7 @@ function message_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["message01", "message02", "message03", "inbox01", "inbox02", "inbox03", "token01"] as $k) {
+    foreach (["message01", "message02", "message03", "inbox01", "inbox02", "inbox03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

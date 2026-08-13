@@ -56,7 +56,7 @@ except Exception as err:
 ### 3. Load an email
 
 Email is nested under message, so provide the `message_id`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -140,7 +140,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TempmailSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 domain = client.Domain().list()
 # domain contains the mock response record
 ```
@@ -245,7 +246,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -267,7 +268,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 
 Operations: List.
 
@@ -277,7 +278,7 @@ API path: `/domains`
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `date` |  |
 | `from` |  |
@@ -305,7 +306,7 @@ API path: `/custom/{username}@{domain}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
+| `emails` |  |
 
 Operations: Load, Remove.
 
@@ -318,7 +319,7 @@ API path: `/inbox/{token}`
 | `success` |  |
 | `token` |  |
 | `url` |  |
-| `webhook_id` |  |
+| `webhookId` |  |
 
 Operations: Create, Remove.
 
@@ -343,7 +344,7 @@ Create an instance: `domain = client.Domain()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `list` |  |
+| `domains` | `list` |  |
 
 #### Example: List
 
@@ -366,7 +367,7 @@ Create an instance: `email = client.Email()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `list` |  |
+| `attachments` | `list` |  |
 | `body` | `str` |  |
 | `date` | `str` |  |
 | `from` | `str` |  |
@@ -431,7 +432,7 @@ Create an instance: `message = client.Message()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `list` |  |
+| `emails` | `list` |  |
 
 #### Example: Load
 
@@ -458,7 +459,7 @@ Create an instance: `webhook = client.Webhook()`
 | `success` | `bool` |  |
 | `token` | `str` |  |
 | `url` | `str` |  |
-| `webhook_id` | `str` |  |
+| `webhookId` | `str` |  |
 
 #### Example: Create
 

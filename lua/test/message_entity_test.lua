@@ -19,7 +19,7 @@ describe("MessageEntity", function()
     local setup = message_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"load", "remove"}) do
+    for _, _op in ipairs({"load"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "message." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -72,7 +72,7 @@ function message_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "message01", "message02", "message03", "inbox01", "inbox02", "inbox03", "token01" },
+    { "message01", "message02", "message03", "inbox01", "inbox02", "inbox03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

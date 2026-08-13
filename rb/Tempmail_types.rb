@@ -10,25 +10,25 @@
 
 # Domain entity data model.
 #
-# @!attribute [rw] domain
+# @!attribute [rw] domains
 #   @return [Array, nil]
 Domain = Struct.new(
-  :domain,
+  :domains,
   keyword_init: true
 )
 
 # Request payload for Domain#list.
 #
-# @!attribute [rw] domain
+# @!attribute [rw] domains
 #   @return [Array, nil]
 DomainListMatch = Struct.new(
-  :domain,
+  :domains,
   keyword_init: true
 )
 
 # Email entity data model.
 #
-# @!attribute [rw] attachment
+# @!attribute [rw] attachments
 #   @return [Array, nil]
 #
 # @!attribute [rw] body
@@ -52,7 +52,7 @@ DomainListMatch = Struct.new(
 # @!attribute [rw] to
 #   @return [String, nil]
 Email = Struct.new(
-  :attachment,
+  :attachments,
   :body,
   :date,
   :from,
@@ -109,18 +109,26 @@ InboxLoadMatch = Struct.new(
 #
 # @!attribute [rw] username
 #   @return [String]
+#
+# @!attribute [rw] address
+#   @return [String, nil]
+#
+# @!attribute [rw] token
+#   @return [String, nil]
 InboxCreateData = Struct.new(
   :domain,
   :username,
+  :address,
+  :token,
   keyword_init: true
 )
 
 # Message entity data model.
 #
-# @!attribute [rw] email
+# @!attribute [rw] emails
 #   @return [Array, nil]
 Message = Struct.new(
-  :email,
+  :emails,
   keyword_init: true
 )
 
@@ -157,13 +165,13 @@ MessageRemoveMatch = Struct.new(
 # @!attribute [rw] url
 #   @return [String]
 #
-# @!attribute [rw] webhook_id
+# @!attribute [rw] webhookId
 #   @return [String, nil]
 Webhook = Struct.new(
   :success,
   :token,
   :url,
-  :webhook_id,
+  :webhookId,
   keyword_init: true
 )
 
@@ -178,13 +186,13 @@ Webhook = Struct.new(
 # @!attribute [rw] url
 #   @return [String]
 #
-# @!attribute [rw] webhook_id
+# @!attribute [rw] webhookId
 #   @return [String, nil]
 WebhookCreateData = Struct.new(
   :success,
   :token,
   :url,
-  :webhook_id,
+  :webhookId,
   keyword_init: true
 )
 

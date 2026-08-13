@@ -45,7 +45,7 @@ local domains, err = client:Domain():list()
 if err then error(err) end
 
 for _, item in ipairs(domains) do
-  print(item["domain"])
+  print(item["domains"])
 end
 ```
 
@@ -240,9 +240,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local domain, err = client:Domain():load()
+    local email, err = client:Email():load()
     if err then error(err) end
-    -- domain is the loaded record
+    -- email is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -253,7 +253,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 
 Operations: List.
 
@@ -263,7 +263,7 @@ API path: `/domains`
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `date` |  |
 | `from` |  |
@@ -291,7 +291,7 @@ API path: `/custom/{username}@{domain}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
+| `emails` |  |
 
 Operations: Load, Remove.
 
@@ -304,7 +304,7 @@ API path: `/inbox/{token}`
 | `success` |  |
 | `token` |  |
 | `url` |  |
-| `webhook_id` |  |
+| `webhookId` |  |
 
 Operations: Create, Remove.
 
@@ -329,7 +329,7 @@ Create an instance: `local domain = client:Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `table` |  |
+| `domains` | `table` |  |
 
 #### Example: List
 
@@ -352,7 +352,7 @@ Create an instance: `local email = client:Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `table` |  |
+| `attachments` | `table` |  |
 | `body` | `string` |  |
 | `date` | `string` |  |
 | `from` | `string` |  |
@@ -417,7 +417,7 @@ Create an instance: `local message = client:Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `table` |  |
+| `emails` | `table` |  |
 
 #### Example: Load
 
@@ -444,7 +444,7 @@ Create an instance: `local webhook = client:Webhook(nil)`
 | `success` | `boolean` |  |
 | `token` | `string` |  |
 | `url` | `string` |  |
-| `webhook_id` | `string` |  |
+| `webhookId` | `string` |  |
 
 #### Example: Create
 

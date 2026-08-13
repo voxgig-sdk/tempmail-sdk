@@ -15,19 +15,19 @@ declare(strict_types=1);
 /** Domain entity data model. */
 class Domain
 {
-    public ?array $domain = null;
+    public ?array $domains = null;
 }
 
 /** Request payload for Domain#list. */
 class DomainListMatch
 {
-    public ?array $domain = null;
+    public ?array $domains = null;
 }
 
 /** Email entity data model. */
 class Email
 {
-    public ?array $attachment = null;
+    public ?array $attachments = null;
     public ?string $body = null;
     public ?string $date = null;
     public ?string $from = null;
@@ -63,12 +63,14 @@ class InboxCreateData
 {
     public string $domain;
     public string $username;
+    public ?string $address = null;
+    public ?string $token = null;
 }
 
 /** Message entity data model. */
 class Message
 {
-    public ?array $email = null;
+    public ?array $emails = null;
 }
 
 /** Request payload for Message#load. */
@@ -90,7 +92,7 @@ class Webhook
     public ?bool $success = null;
     public string $token;
     public string $url;
-    public ?string $webhook_id = null;
+    public ?string $webhookId = null;
 }
 
 /** Request payload for Webhook#create. */
@@ -99,7 +101,7 @@ class WebhookCreateData
     public ?bool $success = null;
     public string $token;
     public string $url;
-    public ?string $webhook_id = null;
+    public ?string $webhookId = null;
 }
 
 /** Request payload for Webhook#remove. */

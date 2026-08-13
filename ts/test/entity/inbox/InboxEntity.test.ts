@@ -64,13 +64,13 @@ describe('InboxEntity', async () => {
     inbox_ref01_data['domain'] = setup.idmap['domain01']
     inbox_ref01_data['username'] = setup.idmap['username01']
 
-    inbox_ref01_data = await inbox_ref01_ent.create(inbox_ref01_data)
+    inbox_ref01_data = (await inbox_ref01_ent.create(inbox_ref01_data)).data()
     assert(null != inbox_ref01_data)
 
 
     // LOAD
     const inbox_ref01_match_dt0: any = {}
-    const inbox_ref01_data_dt0 = await inbox_ref01_ent.load(inbox_ref01_match_dt0)
+    const inbox_ref01_data_dt0 = (await inbox_ref01_ent.load(inbox_ref01_match_dt0)).data()
     assert(null != inbox_ref01_data_dt0)
 
 

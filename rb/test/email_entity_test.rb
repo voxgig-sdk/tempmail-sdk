@@ -45,7 +45,7 @@ class EmailEntityTest < Minitest::Test
       "id" => email_ref01_data["id"],
     }
     email_ref01_data_dt0_loaded = email_ref01_ent.load(email_ref01_match_dt0, nil)
-    email_ref01_data_dt0_load_result = Helpers.to_map(email_ref01_data_dt0_loaded)
+    email_ref01_data_dt0_load_result = Helpers.to_map(email_ref01_data_dt0_loaded.respond_to?(:data_get) ? email_ref01_data_dt0_loaded.data_get : email_ref01_data_dt0_loaded)
     assert !email_ref01_data_dt0_load_result.nil?
     assert_equal email_ref01_data_dt0_load_result["id"], email_ref01_data["id"]
 

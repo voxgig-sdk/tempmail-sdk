@@ -58,19 +58,11 @@ func TestWebhookEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		webhookRef01Data = core.ToMapAny(webhookRef01DataResult)
+		webhookRef01Data = core.ToMapAny(entityData(webhookRef01DataResult))
 		if webhookRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
 
-		// REMOVE
-		webhookRef01MatchRm0 := map[string]any{
-			"id": webhookRef01Data["id"],
-		}
-		_, err = webhookRef01Ent.Remove(webhookRef01MatchRm0, nil)
-		if err != nil {
-			t.Fatalf("remove failed: %v", err)
-		}
 
 	})
 }

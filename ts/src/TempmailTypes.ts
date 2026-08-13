@@ -6,15 +6,15 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Domain {
-  domain?: any[]
+  domains?: any[]
 }
 
 export interface DomainListMatch {
-  domain?: any[]
+  domains?: any[]
 }
 
 export interface Email {
-  attachment?: any[]
+  attachments?: any[]
   body?: string
   date?: string
   from?: string
@@ -42,10 +42,12 @@ export interface InboxLoadMatch {
 export interface InboxCreateData {
   domain: string
   username: string
+  address?: string
+  token?: string
 }
 
 export interface Message {
-  email?: any[]
+  emails?: any[]
 }
 
 export interface MessageLoadMatch {
@@ -61,14 +63,14 @@ export interface Webhook {
   success?: boolean
   token: string
   url: string
-  webhook_id?: string
+  webhookId?: string
 }
 
 export interface WebhookCreateData {
   success?: boolean
   token: string
   url: string
-  webhook_id?: string
+  webhookId?: string
 }
 
 export interface WebhookRemoveMatch {

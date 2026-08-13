@@ -110,7 +110,7 @@ domain = client.Domain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `Array` | No |  |
+| `domains` | `Array` | No |  |
 
 ### Operations
 
@@ -162,7 +162,7 @@ email = client.Email
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `Array` | No |  |
+| `attachments` | `Array` | No |  |
 | `body` | `String` | No |  |
 | `date` | `String` | No |  |
 | `from` | `String` | No |  |
@@ -285,7 +285,7 @@ message = client.Message
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `Array` | No |  |
+| `emails` | `Array` | No |  |
 
 ### Operations
 
@@ -348,7 +348,7 @@ webhook = client.Webhook
 | `success` | `Boolean` | No |  |
 | `token` | `String` | Yes |  |
 | `url` | `String` | Yes |  |
-| `webhook_id` | `String` | No |  |
+| `webhookId` | `String` | No |  |
 
 ### Operations
 

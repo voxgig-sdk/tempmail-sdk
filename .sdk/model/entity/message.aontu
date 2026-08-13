@@ -6,7 +6,7 @@ main: kit: entity: message: {
 
   fields: [
     {
-      name: "email"
+      name: "emails"
       req: false
       type: "`$ARRAY`"
     }

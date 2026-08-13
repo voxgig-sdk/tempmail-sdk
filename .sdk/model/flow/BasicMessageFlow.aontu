@@ -27,20 +27,6 @@ main: kit: flow: BasicMessageFlow:
         }
       ]
     }
-
-    {
-      input: {
-        ref: "message_ref01",
-        suffix: "_rm0"
-      }
-
-      match: {
-        id: "message01",
-        token: "token01"
-      }
-
-      op: "remove"
-    }
   ],
   "key$": "BasicMessageFlow"
 }

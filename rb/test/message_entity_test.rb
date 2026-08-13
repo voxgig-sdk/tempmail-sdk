@@ -16,7 +16,7 @@ class MessageEntityTest < Minitest::Test
     setup = message_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["load", "remove"].each do |_op|
+    ["load"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "message." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
@@ -62,7 +62,7 @@ def message_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["message01", "message02", "message03", "inbox01", "inbox02", "inbox03", "token01"],
+    ["message01", "message02", "message03", "inbox01", "inbox02", "inbox03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

@@ -21,7 +21,7 @@ main: kit: entity: webhook: {
       type: "`$STRING`"
     }
     {
-      name: "webhook_id"
+      name: "webhookId"
       req: false
       type: "`$STRING`"
     }

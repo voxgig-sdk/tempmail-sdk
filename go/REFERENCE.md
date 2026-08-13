@@ -115,7 +115,7 @@ fmt.Println(domain.GetName()) // "domain"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `[]any` | No |  |
+| `domains` | `[]any` | No |  |
 
 ### Operations
 
@@ -166,7 +166,7 @@ fmt.Println(email.GetName()) // "email"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `[]any` | No |  |
+| `attachments` | `[]any` | No |  |
 | `body` | `string` | No |  |
 | `date` | `string` | No |  |
 | `from` | `string` | No |  |
@@ -291,7 +291,7 @@ fmt.Println(message.GetName()) // "message"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `[]any` | No |  |
+| `emails` | `[]any` | No |  |
 
 ### Operations
 
@@ -357,7 +357,7 @@ fmt.Println(webhook.GetName()) // "webhook"
 | `success` | `bool` | No |  |
 | `token` | `string` | Yes |  |
 | `url` | `string` | Yes |  |
-| `webhook_id` | `string` | No |  |
+| `webhookId` | `string` | No |  |
 
 ### Operations
 

@@ -165,7 +165,7 @@ const domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `any[]` | No |  |
+| `domains` | `any[]` | No |  |
 
 ### Operations
 
@@ -215,7 +215,7 @@ const email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `any[]` | No |  |
+| `attachments` | `any[]` | No |  |
 | `body` | `string` | No |  |
 | `date` | `string` | No |  |
 | `from` | `string` | No |  |
@@ -334,7 +334,7 @@ const message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `any[]` | No |  |
+| `emails` | `any[]` | No |  |
 
 ### Operations
 
@@ -395,7 +395,7 @@ const webhook = client.Webhook()
 | `success` | `boolean` | No |  |
 | `token` | `string` | Yes |  |
 | `url` | `string` | Yes |  |
-| `webhook_id` | `string` | No |  |
+| `webhookId` | `string` | No |  |
 
 ### Operations
 

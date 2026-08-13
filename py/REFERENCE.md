@@ -104,7 +104,7 @@ domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `list` | No |  |
+| `domains` | `list` | No |  |
 
 ### Operations
 
@@ -157,7 +157,7 @@ email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `list` | No |  |
+| `attachments` | `list` | No |  |
 | `body` | `str` | No |  |
 | `date` | `str` | No |  |
 | `from` | `str` | No |  |
@@ -278,7 +278,7 @@ message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `list` | No |  |
+| `emails` | `list` | No |  |
 
 ### Operations
 
@@ -340,7 +340,7 @@ webhook = client.Webhook()
 | `success` | `bool` | No |  |
 | `token` | `str` | Yes |  |
 | `url` | `str` | Yes |  |
-| `webhook_id` | `str` | No |  |
+| `webhookId` | `str` | No |  |
 
 ### Operations
 

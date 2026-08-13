@@ -60,7 +60,7 @@ func TestInboxEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		inboxRef01Data = core.ToMapAny(inboxRef01DataResult)
+		inboxRef01Data = core.ToMapAny(entityData(inboxRef01DataResult))
 		if inboxRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}

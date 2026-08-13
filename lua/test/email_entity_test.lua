@@ -49,7 +49,7 @@ describe("EmailEntity", function()
     }
     local email_ref01_data_dt0_loaded, err = email_ref01_ent:load(email_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local email_ref01_data_dt0_load_result = helpers.to_map(email_ref01_data_dt0_loaded)
+    local email_ref01_data_dt0_load_result = helpers.to_map(type(email_ref01_data_dt0_loaded) == 'table' and email_ref01_data_dt0_loaded.data_get and email_ref01_data_dt0_loaded:data_get() or email_ref01_data_dt0_loaded)
     assert.is_not_nil(email_ref01_data_dt0_load_result)
     assert.are.equal(email_ref01_data_dt0_load_result["id"], email_ref01_data["id"])
 
