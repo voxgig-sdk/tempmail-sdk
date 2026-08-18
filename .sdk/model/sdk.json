@@ -20,9 +20,11 @@
         ],
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "repr": "auto"
       },
       "contributor": {},
+      "docs": {},
       "entity": {
         "domain": {
           "active": true,
@@ -505,6 +507,7 @@
       "feature": {
         "test": {
           "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
@@ -565,6 +568,8 @@
             }
           },
           "name": "test",
+          "origname": "",
+          "package": "@voxgig/sdkgen",
           "target": {
             "go": {
               "deps": {}
@@ -803,6 +808,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -821,12 +827,14 @@
             "path": ""
           },
           "name": "go",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -860,6 +868,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -876,12 +885,14 @@
             "path": ""
           },
           "name": "go-cli",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "phase": {
             "agentguide": {
               "active": false
@@ -931,6 +942,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -947,12 +959,14 @@
             "path": ""
           },
           "name": "go-mcp",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "phase": {
             "agentguide": {
               "active": false
@@ -1002,6 +1016,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "--"
           },
@@ -1024,12 +1039,14 @@
             "path": ""
           },
           "name": "lua",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1063,6 +1080,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -1079,12 +1097,14 @@
             "path": ""
           },
           "name": "php",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1118,6 +1138,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "#"
           },
@@ -1140,12 +1161,14 @@
             "path": ""
           },
           "name": "py",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1179,6 +1202,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "#"
           },
@@ -1206,12 +1230,14 @@
             "path": ""
           },
           "name": "rb",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1278,12 +1304,14 @@
             "path": ""
           },
           "name": "ts",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,

@@ -15,7 +15,7 @@ require_relative "../Tempmail_sdk"
 module TempmailFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = TempmailConfig.make_config["feature"]
+    f = TempmailConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
