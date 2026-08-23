@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "Tempmail",
+      slug = "tempmail",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -70,34 +73,42 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "attachments",
+            ["short"] = "List of email attachments",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "body",
+            ["short"] = "Email body content (plain text)",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "date",
+            ["short"] = "Timestamp when the email was received",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "from",
+            ["short"] = "Sender's email address",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "html",
+            ["short"] = "Email body content (HTML format)",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["short"] = "Unique identifier for the email message",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "subject",
+            ["short"] = "Email subject line",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "to",
+            ["short"] = "Recipient's email address",
             ["type"] = "`$STRING`",
           },
         },
@@ -167,10 +178,12 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "address",
+            ["short"] = "The generated temporary email address",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "token",
+            ["short"] = "Authentication token for accessing this inbox",
             ["type"] = "`$STRING`",
           },
         },
@@ -360,15 +373,18 @@ local function make_config()
           {
             ["name"] = "token",
             ["req"] = true,
+            ["short"] = "The inbox token to register webhook for",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "url",
             ["req"] = true,
+            ["short"] = "The webhook URL to receive notifications",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "webhookId",
+            ["short"] = "Unique identifier for the registered webhook",
             ["type"] = "`$STRING`",
           },
         },

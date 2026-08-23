@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -329,14 +329,14 @@ API path: `/domains`
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `date` |  |
-| `from` |  |
-| `html` |  |
-| `id` |  |
-| `subject` |  |
-| `to` |  |
+| `attachments` | List of email attachments |
+| `body` | Email body content (plain text) |
+| `date` | Timestamp when the email was received |
+| `from` | Sender's email address |
+| `html` | Email body content (HTML format) |
+| `id` | Unique identifier for the email message |
+| `subject` | Email subject line |
+| `to` | Recipient's email address |
 
 Operations: load.
 
@@ -346,8 +346,8 @@ API path: `/inbox/{token}/message/{messageId}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `token` |  |
+| `address` | The generated temporary email address |
+| `token` | Authentication token for accessing this inbox |
 
 Operations: create, load.
 
@@ -368,9 +368,9 @@ API path: `/inbox/{token}`
 | Field | Description |
 | --- | --- |
 | `success` |  |
-| `token` |  |
-| `url` |  |
-| `webhookId` |  |
+| `token` | The inbox token to register webhook for |
+| `url` | The webhook URL to receive notifications |
+| `webhookId` | Unique identifier for the registered webhook |
 
 Operations: create, remove.
 
@@ -418,14 +418,14 @@ Create an instance: `const email = client.Email()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `any[]` |  |
-| `body` | `string` |  |
-| `date` | `string` |  |
-| `from` | `string` |  |
-| `html` | `string` |  |
-| `id` | `string` |  |
-| `subject` | `string` |  |
-| `to` | `string` |  |
+| `attachments` | `any[]` | List of email attachments |
+| `body` | `string` | Email body content (plain text) |
+| `date` | `string` | Timestamp when the email was received |
+| `from` | `string` | Sender's email address |
+| `html` | `string` | Email body content (HTML format) |
+| `id` | `string` | Unique identifier for the email message |
+| `subject` | `string` | Email subject line |
+| `to` | `string` | Recipient's email address |
 
 #### Example: Load
 
@@ -449,8 +449,8 @@ Create an instance: `const inbox = client.Inbox()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `token` | `string` |  |
+| `address` | `string` | The generated temporary email address |
+| `token` | `string` | Authentication token for accessing this inbox |
 
 #### Example: Load
 
@@ -508,9 +508,9 @@ Create an instance: `const webhook = client.Webhook()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `success` | `boolean` |  |
-| `token` | `string` |  |
-| `url` | `string` |  |
-| `webhookId` | `string` |  |
+| `token` | `string` | The inbox token to register webhook for |
+| `url` | `string` | The webhook URL to receive notifications |
+| `webhookId` | `string` | Unique identifier for the registered webhook |
 
 #### Example: Create
 

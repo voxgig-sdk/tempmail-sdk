@@ -77,48 +77,56 @@
               "active": true,
               "name": "attachments",
               "req": false,
+              "short": "List of email attachments",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "body",
               "req": false,
+              "short": "Email body content (plain text)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "date",
               "req": false,
+              "short": "Timestamp when the email was received",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "from",
               "req": false,
+              "short": "Sender's email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "html",
               "req": false,
+              "short": "Email body content (HTML format)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the email message",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "subject",
               "req": false,
+              "short": "Email subject line",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "to",
               "req": false,
+              "short": "Recipient's email address",
               "type": "`$STRING`"
             }
           ],
@@ -201,12 +209,14 @@
               "active": true,
               "name": "address",
               "req": false,
+              "short": "The generated temporary email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "token",
               "req": false,
+              "short": "Authentication token for accessing this inbox",
               "type": "`$STRING`"
             }
           ],
@@ -418,18 +428,21 @@
               "active": true,
               "name": "token",
               "req": true,
+              "short": "The inbox token to register webhook for",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": true,
+              "short": "The webhook URL to receive notifications",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "webhookId",
               "req": false,
+              "short": "Unique identifier for the registered webhook",
               "type": "`$STRING`"
             }
           ],

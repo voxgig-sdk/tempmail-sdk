@@ -162,14 +162,14 @@ email = client.Email
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `Array` | No |  |
-| `body` | `String` | No |  |
-| `date` | `String` | No |  |
-| `from` | `String` | No |  |
-| `html` | `String` | No |  |
-| `id` | `String` | No |  |
-| `subject` | `String` | No |  |
-| `to` | `String` | No |  |
+| `attachments` | `Array` | No | List of email attachments |
+| `body` | `String` | No | Email body content (plain text) |
+| `date` | `String` | No | Timestamp when the email was received |
+| `from` | `String` | No | Sender's email address |
+| `html` | `String` | No | Email body content (HTML format) |
+| `id` | `String` | No | Unique identifier for the email message |
+| `subject` | `String` | No | Email subject line |
+| `to` | `String` | No | Recipient's email address |
 
 ### Operations
 
@@ -221,8 +221,8 @@ inbox = client.Inbox
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | No |  |
-| `token` | `String` | No |  |
+| `address` | `String` | No | The generated temporary email address |
+| `token` | `String` | No | Authentication token for accessing this inbox |
 
 ### Operations
 
@@ -346,9 +346,9 @@ webhook = client.Webhook
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `success` | `Boolean` | No |  |
-| `token` | `String` | Yes |  |
-| `url` | `String` | Yes |  |
-| `webhookId` | `String` | No |  |
+| `token` | `String` | Yes | The inbox token to register webhook for |
+| `url` | `String` | Yes | The webhook URL to receive notifications |
+| `webhookId` | `String` | No | Unique identifier for the registered webhook |
 
 ### Operations
 

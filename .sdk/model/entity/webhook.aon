@@ -13,16 +13,19 @@ main: kit: entity: webhook: {
     {
       name: "token"
       req: true
+      short: "The inbox token to register webhook for"
       type: "`$STRING`"
     }
     {
       name: "url"
       req: true
+      short: "The webhook URL to receive notifications"
       type: "`$STRING`"
     }
     {
       name: "webhookId"
       req: false
+      short: "Unique identifier for the registered webhook"
       type: "`$STRING`"
     }
   ]

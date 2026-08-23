@@ -8,11 +8,13 @@ main: kit: entity: inbox: {
     {
       name: "address"
       req: false
+      short: "The generated temporary email address"
       type: "`$STRING`"
     }
     {
       name: "token"
       req: false
+      short: "Authentication token for accessing this inbox"
       type: "`$STRING`"
     }
   ]

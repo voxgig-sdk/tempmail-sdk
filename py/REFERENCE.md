@@ -157,14 +157,14 @@ email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `list` | No |  |
-| `body` | `str` | No |  |
-| `date` | `str` | No |  |
-| `from` | `str` | No |  |
-| `html` | `str` | No |  |
-| `id` | `str` | No |  |
-| `subject` | `str` | No |  |
-| `to` | `str` | No |  |
+| `attachments` | `list` | No | List of email attachments |
+| `body` | `str` | No | Email body content (plain text) |
+| `date` | `str` | No | Timestamp when the email was received |
+| `from` | `str` | No | Sender's email address |
+| `html` | `str` | No | Email body content (HTML format) |
+| `id` | `str` | No | Unique identifier for the email message |
+| `subject` | `str` | No | Email subject line |
+| `to` | `str` | No | Recipient's email address |
 
 ### Operations
 
@@ -215,8 +215,8 @@ inbox = client.Inbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `str` | No |  |
-| `token` | `str` | No |  |
+| `address` | `str` | No | The generated temporary email address |
+| `token` | `str` | No | Authentication token for accessing this inbox |
 
 ### Operations
 
@@ -338,9 +338,9 @@ webhook = client.Webhook()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `success` | `bool` | No |  |
-| `token` | `str` | Yes |  |
-| `url` | `str` | Yes |  |
-| `webhookId` | `str` | No |  |
+| `token` | `str` | Yes | The inbox token to register webhook for |
+| `url` | `str` | Yes | The webhook URL to receive notifications |
+| `webhookId` | `str` | No | Unique identifier for the registered webhook |
 
 ### Operations
 

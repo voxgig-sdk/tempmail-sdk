@@ -1,7 +1,0 @@
-# Entity Models
-
-@"domain.aontu"
-@"email.aontu"
-@"inbox.aontu"
-@"message.aontu"
-@"webhook.aontu"

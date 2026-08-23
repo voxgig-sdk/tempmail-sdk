@@ -272,14 +272,14 @@ API path: `/domains`
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `date` |  |
-| `from` |  |
-| `html` |  |
-| `id` |  |
-| `subject` |  |
-| `to` |  |
+| `attachments` | List of email attachments |
+| `body` | Email body content (plain text) |
+| `date` | Timestamp when the email was received |
+| `from` | Sender's email address |
+| `html` | Email body content (HTML format) |
+| `id` | Unique identifier for the email message |
+| `subject` | Email subject line |
+| `to` | Recipient's email address |
 
 Operations: Load.
 
@@ -289,8 +289,8 @@ API path: `/inbox/{token}/message/{messageId}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `token` |  |
+| `address` | The generated temporary email address |
+| `token` | Authentication token for accessing this inbox |
 
 Operations: Create, Load.
 
@@ -311,9 +311,9 @@ API path: `/inbox/{token}`
 | Field | Description |
 | --- | --- |
 | `success` |  |
-| `token` |  |
-| `url` |  |
-| `webhookId` |  |
+| `token` | The inbox token to register webhook for |
+| `url` | The webhook URL to receive notifications |
+| `webhookId` | Unique identifier for the registered webhook |
 
 Operations: Create, Remove.
 
@@ -362,14 +362,14 @@ Create an instance: `email = client.Email`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `Array` |  |
-| `body` | `String` |  |
-| `date` | `String` |  |
-| `from` | `String` |  |
-| `html` | `String` |  |
-| `id` | `String` |  |
-| `subject` | `String` |  |
-| `to` | `String` |  |
+| `attachments` | `Array` | List of email attachments |
+| `body` | `String` | Email body content (plain text) |
+| `date` | `String` | Timestamp when the email was received |
+| `from` | `String` | Sender's email address |
+| `html` | `String` | Email body content (HTML format) |
+| `id` | `String` | Unique identifier for the email message |
+| `subject` | `String` | Email subject line |
+| `to` | `String` | Recipient's email address |
 
 #### Example: Load
 
@@ -394,8 +394,8 @@ Create an instance: `inbox = client.Inbox`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `String` |  |
-| `token` | `String` |  |
+| `address` | `String` | The generated temporary email address |
+| `token` | `String` | Authentication token for accessing this inbox |
 
 #### Example: Load
 
@@ -455,9 +455,9 @@ Create an instance: `webhook = client.Webhook`
 | Field | Type | Description |
 | --- | --- | --- |
 | `success` | `Boolean` |  |
-| `token` | `String` |  |
-| `url` | `String` |  |
-| `webhookId` | `String` |  |
+| `token` | `String` | The inbox token to register webhook for |
+| `url` | `String` | The webhook URL to receive notifications |
+| `webhookId` | `String` | Unique identifier for the registered webhook |
 
 #### Example: Create
 

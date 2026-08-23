@@ -6,7 +6,7 @@ The Golang SDK for the Tempmail API — an entity-oriented client using standard
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Domain(nil)` — each with the same small set of operations (`List`, `Load`, `Create`, `Remove`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -283,14 +283,14 @@ API path: `/domains`
 
 | Field | Description |
 | --- | --- |
-| `"attachments"` |  |
-| `"body"` |  |
-| `"date"` |  |
-| `"from"` |  |
-| `"html"` |  |
-| `"id"` |  |
-| `"subject"` |  |
-| `"to"` |  |
+| `"attachments"` | List of email attachments |
+| `"body"` | Email body content (plain text) |
+| `"date"` | Timestamp when the email was received |
+| `"from"` | Sender's email address |
+| `"html"` | Email body content (HTML format) |
+| `"id"` | Unique identifier for the email message |
+| `"subject"` | Email subject line |
+| `"to"` | Recipient's email address |
 
 Operations: Load.
 
@@ -300,8 +300,8 @@ API path: `/inbox/{token}/message/{messageId}`
 
 | Field | Description |
 | --- | --- |
-| `"address"` |  |
-| `"token"` |  |
+| `"address"` | The generated temporary email address |
+| `"token"` | Authentication token for accessing this inbox |
 
 Operations: Create, Load.
 
@@ -322,9 +322,9 @@ API path: `/inbox/{token}`
 | Field | Description |
 | --- | --- |
 | `"success"` |  |
-| `"token"` |  |
-| `"url"` |  |
-| `"webhookId"` |  |
+| `"token"` | The inbox token to register webhook for |
+| `"url"` | The webhook URL to receive notifications |
+| `"webhookId"` | Unique identifier for the registered webhook |
 
 Operations: Create, Remove.
 
@@ -376,14 +376,14 @@ Create an instance: `email := client.Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `[]any` |  |
-| `body` | `string` |  |
-| `date` | `string` |  |
-| `from` | `string` |  |
-| `html` | `string` |  |
-| `id` | `string` |  |
-| `subject` | `string` |  |
-| `to` | `string` |  |
+| `attachments` | `[]any` | List of email attachments |
+| `body` | `string` | Email body content (plain text) |
+| `date` | `string` | Timestamp when the email was received |
+| `from` | `string` | Sender's email address |
+| `html` | `string` | Email body content (HTML format) |
+| `id` | `string` | Unique identifier for the email message |
+| `subject` | `string` | Email subject line |
+| `to` | `string` | Recipient's email address |
 
 #### Example: Load
 
@@ -411,8 +411,8 @@ Create an instance: `inbox := client.Inbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `token` | `string` |  |
+| `address` | `string` | The generated temporary email address |
+| `token` | `string` | Authentication token for accessing this inbox |
 
 #### Example: Load
 
@@ -482,9 +482,9 @@ Create an instance: `webhook := client.Webhook(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `success` | `bool` |  |
-| `token` | `string` |  |
-| `url` | `string` |  |
-| `webhookId` | `string` |  |
+| `token` | `string` | The inbox token to register webhook for |
+| `url` | `string` | The webhook URL to receive notifications |
+| `webhookId` | `string` | Unique identifier for the registered webhook |
 
 #### Example: Create
 

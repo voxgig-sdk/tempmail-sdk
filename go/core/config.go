@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Tempmail",
+			"slug": "tempmail",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -74,34 +77,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "attachments",
+						"short": "List of email attachments",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "body",
+						"short": "Email body content (plain text)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "date",
+						"short": "Timestamp when the email was received",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "from",
+						"short": "Sender's email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "html",
+						"short": "Email body content (HTML format)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the email message",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "subject",
+						"short": "Email subject line",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "to",
+						"short": "Recipient's email address",
 						"type": "`$STRING`",
 					},
 				},
@@ -171,10 +182,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
+						"short": "The generated temporary email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "token",
+						"short": "Authentication token for accessing this inbox",
 						"type": "`$STRING`",
 					},
 				},
@@ -364,15 +377,18 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "token",
 						"req": true,
+						"short": "The inbox token to register webhook for",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
 						"req": true,
+						"short": "The webhook URL to receive notifications",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "webhookId",
+						"short": "Unique identifier for the registered webhook",
 						"type": "`$STRING`",
 					},
 				},

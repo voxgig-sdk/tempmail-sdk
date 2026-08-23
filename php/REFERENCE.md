@@ -161,14 +161,14 @@ $email = $client->Email();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `array` | No |  |
-| `body` | `string` | No |  |
-| `date` | `string` | No |  |
-| `from` | `string` | No |  |
-| `html` | `string` | No |  |
-| `id` | `string` | No |  |
-| `subject` | `string` | No |  |
-| `to` | `string` | No |  |
+| `attachments` | `array` | No | List of email attachments |
+| `body` | `string` | No | Email body content (plain text) |
+| `date` | `string` | No | Timestamp when the email was received |
+| `from` | `string` | No | Sender's email address |
+| `html` | `string` | No | Email body content (HTML format) |
+| `id` | `string` | No | Unique identifier for the email message |
+| `subject` | `string` | No | Email subject line |
+| `to` | `string` | No | Recipient's email address |
 
 ### Operations
 
@@ -220,8 +220,8 @@ $inbox = $client->Inbox();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `token` | `string` | No |  |
+| `address` | `string` | No | The generated temporary email address |
+| `token` | `string` | No | Authentication token for accessing this inbox |
 
 ### Operations
 
@@ -345,9 +345,9 @@ $webhook = $client->Webhook();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `success` | `bool` | No |  |
-| `token` | `string` | Yes |  |
-| `url` | `string` | Yes |  |
-| `webhookId` | `string` | No |  |
+| `token` | `string` | Yes | The inbox token to register webhook for |
+| `url` | `string` | Yes | The webhook URL to receive notifications |
+| `webhookId` | `string` | No | Unique identifier for the registered webhook |
 
 ### Operations
 
