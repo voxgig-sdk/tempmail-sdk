@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -288,6 +289,10 @@ def make_config():
             "name": "emails",
             "type": "`$ARRAY`",
           },
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
         ],
         "name": "message",
         "op": {
@@ -387,6 +392,10 @@ def make_config():
       },
       "webhook": {
         "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
           {
             "name": "success",
             "type": "`$BOOLEAN`",

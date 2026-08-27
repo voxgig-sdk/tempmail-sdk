@@ -63,6 +63,7 @@ type InboxCreateData struct {
 // Message is the typed data model for the message entity.
 type Message struct {
 	Emails *[]any `json:"emails,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // MessageLoadMatch is the typed request payload for Message.LoadTyped.
@@ -78,6 +79,7 @@ type MessageRemoveMatch struct {
 
 // Webhook is the typed data model for the webhook entity.
 type Webhook struct {
+	Id *string `json:"id,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Token string `json:"token"`
 	Url string `json:"url"`
@@ -86,6 +88,7 @@ type Webhook struct {
 
 // WebhookCreateData is the typed request payload for Webhook.CreateTyped.
 type WebhookCreateData struct {
+	Id *string `json:"id,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Token string `json:"token"`
 	Url string `json:"url"`

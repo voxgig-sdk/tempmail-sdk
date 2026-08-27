@@ -61,6 +61,7 @@ class InboxCreateData(InboxCreateDataRequired, total=False):
 
 class Message(TypedDict, total=False):
     emails: list
+    id: str
 
 
 class MessageLoadMatch(TypedDict):
@@ -78,6 +79,7 @@ class WebhookRequired(TypedDict):
 
 
 class Webhook(WebhookRequired, total=False):
+    id: str
     success: bool
     webhookId: str
 
@@ -88,6 +90,7 @@ class WebhookCreateDataRequired(TypedDict):
 
 
 class WebhookCreateData(WebhookCreateDataRequired, total=False):
+    id: str
     success: bool
     webhookId: str
 

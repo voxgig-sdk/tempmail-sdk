@@ -10,7 +10,17 @@ main: kit: entity: message: {
       req: false
       type: "`$ARRAY`"
     }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "message"
   op: {

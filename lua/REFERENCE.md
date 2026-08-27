@@ -283,6 +283,7 @@ local message = client:Message(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `emails` | `table` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -342,6 +343,7 @@ local webhook = client:Webhook(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `success` | `boolean` | No |  |
 | `token` | `string` | Yes | The inbox token to register webhook for |
 | `url` | `string` | Yes | The webhook URL to receive notifications |

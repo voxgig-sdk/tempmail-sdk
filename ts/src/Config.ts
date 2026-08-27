@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -310,6 +311,10 @@ class Config {
         {
           "name": "emails",
           "type": "`$ARRAY`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         }
       ],
       "name": "message",
@@ -410,6 +415,10 @@ class Config {
     },
     "webhook": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "success",
           "type": "`$BOOLEAN`"

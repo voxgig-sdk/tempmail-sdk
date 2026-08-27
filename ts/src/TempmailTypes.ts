@@ -48,6 +48,7 @@ export interface InboxCreateData {
 
 export interface Message {
   emails?: any[]
+  id?: string
 }
 
 export interface MessageLoadMatch {
@@ -60,6 +61,7 @@ export interface MessageRemoveMatch {
 }
 
 export interface Webhook {
+  id?: string
   success?: boolean
   token: string
   url: string
@@ -67,6 +69,7 @@ export interface Webhook {
 }
 
 export interface WebhookCreateData {
+  id?: string
   success?: boolean
   token: string
   url: string

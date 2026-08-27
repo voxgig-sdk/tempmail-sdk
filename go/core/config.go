@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -271,6 +272,10 @@ func MakeConfig() map[string]any {
 						"name": "emails",
 						"type": "`$ARRAY`",
 					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
 				},
 				"name": "message",
 				"op": map[string]any{
@@ -370,6 +375,10 @@ func MakeConfig() map[string]any {
 			},
 			"webhook": map[string]any{
 				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
 					map[string]any{
 						"name": "success",
 						"type": "`$BOOLEAN`",

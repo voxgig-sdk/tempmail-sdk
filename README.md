@@ -42,23 +42,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = TempmailSDK.test({
   entity: {
-    domain: {
-      test01: { id: 'test01' },
+    inbox: {
+      test01: { id: 'test01', domain: 'example_domain', username: 'example_username' },
     },
   },
 })
-const domains = await client.Domain().list()
-// domains is an array of Domain entities, populated with mock data
-// — call domains[0].data() for the record itself
-console.log(domains)
+const inbox = await client.Inbox().load()
+// inbox is the Inbox entity, populated with mock data
+// — call inbox.data() for the record itself
+console.log(inbox)
 ```
 
 ### Python
 
 ```python
 client = TempmailSDK.test()
-domains = client.Domain().list()
-print(domains)
+inbox = client.Inbox().load()
+print(inbox)
 ```
 
 ### PHP
@@ -66,16 +66,16 @@ print(domains)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = TempmailSDK::test([
-    "entity" => ["domain" => ["test01" => []]],
+    "entity" => ["inbox" => ["test01" => []]],
 ]);
-$domains = $client->Domain()->list();
+$inbox = $client->Inbox()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Domain(nil).List(
+result, err := client.Inbox(nil).Load(
     nil, nil,
 )
 ```
@@ -85,16 +85,16 @@ result, err := client.Domain(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = TempmailSDK.test({
-  "entity" => { "domain" => { "test01" => {} } },
+  "entity" => { "inbox" => { "test01" => {} } },
 })
-domains = client.Domain.list()
+inbox = client.Inbox.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Domain():list()
+local result, err = client:Inbox():load()
 ```
 
 ## Packages

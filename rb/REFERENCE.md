@@ -286,6 +286,7 @@ message = client.Message
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `emails` | `Array` | No |  |
+| `id` | `String` | No |  |
 
 ### Operations
 
@@ -345,6 +346,7 @@ webhook = client.Webhook
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `success` | `Boolean` | No |  |
 | `token` | `String` | Yes | The inbox token to register webhook for |
 | `url` | `String` | Yes | The webhook URL to receive notifications |

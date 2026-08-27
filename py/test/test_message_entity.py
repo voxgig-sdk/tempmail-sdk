@@ -48,9 +48,13 @@ class TestMessageEntity:
 
         # LOAD
         message_ref01_ent = client.Message(None)
-        message_ref01_match_dt0 = {}
+        message_ref01_match_dt0 = {
+            "id": message_ref01_data["id"],
+        }
         message_ref01_data_dt0_loaded = message_ref01_ent.load(message_ref01_match_dt0, None)
-        assert message_ref01_data_dt0_loaded is not None
+        message_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(message_ref01_data_dt0_loaded))
+        assert message_ref01_data_dt0_load_result is not None
+        assert message_ref01_data_dt0_load_result["id"] == message_ref01_data["id"]
 
 
 

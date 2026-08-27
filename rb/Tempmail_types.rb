@@ -127,8 +127,12 @@ InboxCreateData = Struct.new(
 #
 # @!attribute [rw] emails
 #   @return [Array, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
 Message = Struct.new(
   :emails,
+  :id,
   keyword_init: true
 )
 
@@ -156,6 +160,9 @@ MessageRemoveMatch = Struct.new(
 
 # Webhook entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 #
@@ -168,6 +175,7 @@ MessageRemoveMatch = Struct.new(
 # @!attribute [rw] webhookId
 #   @return [String, nil]
 Webhook = Struct.new(
+  :id,
   :success,
   :token,
   :url,
@@ -176,6 +184,9 @@ Webhook = Struct.new(
 )
 
 # Request payload for Webhook#create.
+#
+# @!attribute [rw] id
+#   @return [String, nil]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
@@ -189,6 +200,7 @@ Webhook = Struct.new(
 # @!attribute [rw] webhookId
 #   @return [String, nil]
 WebhookCreateData = Struct.new(
+  :id,
   :success,
   :token,
   :url,

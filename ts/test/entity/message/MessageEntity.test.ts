@@ -59,9 +59,12 @@ describe('MessageEntity', async () => {
 
     let message_ref01_data = Object.values(setup.data.existing.message)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const message_ref01_ent = client.Message()
+    const message_ref01_match_dt0: any = {}
+    message_ref01_match_dt0.id = message_ref01_data.id
+    const message_ref01_data_dt0 = (await message_ref01_ent.load(message_ref01_match_dt0)).data()
+    assert(message_ref01_data_dt0.id === message_ref01_data.id)
 
 
   })

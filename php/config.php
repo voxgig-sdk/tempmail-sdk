@@ -42,6 +42,7 @@ class TempmailConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -293,6 +294,10 @@ class TempmailConfig
               'name' => 'emails',
               'type' => '`$ARRAY`',
             ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
           ],
           'name' => 'message',
           'op' => [
@@ -392,6 +397,10 @@ class TempmailConfig
         ],
         'webhook' => [
           'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
             [
               'name' => 'success',
               'type' => '`$BOOLEAN`',

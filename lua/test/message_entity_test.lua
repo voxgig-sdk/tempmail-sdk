@@ -44,10 +44,14 @@ describe("MessageEntity", function()
 
     -- LOAD
     local message_ref01_ent = client:Message(nil)
-    local message_ref01_match_dt0 = {}
+    local message_ref01_match_dt0 = {
+      id = message_ref01_data["id"],
+    }
     local message_ref01_data_dt0_loaded, err = message_ref01_ent:load(message_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(message_ref01_data_dt0_loaded)
+    local message_ref01_data_dt0_load_result = helpers.to_map(type(message_ref01_data_dt0_loaded) == 'table' and message_ref01_data_dt0_loaded.data_get and message_ref01_data_dt0_loaded:data_get() or message_ref01_data_dt0_loaded)
+    assert.is_not_nil(message_ref01_data_dt0_load_result)
+    assert.are.equal(message_ref01_data_dt0_load_result["id"], message_ref01_data["id"])
 
   end)
 end)

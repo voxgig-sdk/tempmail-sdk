@@ -285,6 +285,7 @@ $message = $client->Message();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `emails` | `array` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -344,6 +345,7 @@ $webhook = $client->Webhook();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `success` | `bool` | No |  |
 | `token` | `string` | Yes | The inbox token to register webhook for |
 | `url` | `string` | Yes | The webhook URL to receive notifications |

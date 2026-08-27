@@ -71,6 +71,7 @@ class InboxCreateData
 class Message
 {
     public ?array $emails = null;
+    public ?string $id = null;
 }
 
 /** Request payload for Message#load. */
@@ -89,6 +90,7 @@ class MessageRemoveMatch
 /** Webhook entity data model. */
 class Webhook
 {
+    public ?string $id = null;
     public ?bool $success = null;
     public string $token;
     public string $url;
@@ -98,6 +100,7 @@ class Webhook
 /** Request payload for Webhook#create. */
 class WebhookCreateData
 {
+    public ?string $id = null;
     public ?bool $success = null;
     public string $token;
     public string $url;

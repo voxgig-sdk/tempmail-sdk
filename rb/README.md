@@ -67,9 +67,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  domains = client.Domain.list()
+  inbox = client.Inbox.load()
 rescue => err
-  warn "list failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -137,8 +137,8 @@ client = TempmailSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-domain = client.Domain.list()
-puts domain
+inbox = client.Inbox.load()
+puts inbox
 ```
 
 ### Use a custom fetch function
@@ -301,6 +301,7 @@ API path: `/custom/{username}@{domain}`
 | Field | Description |
 | --- | --- |
 | `emails` |  |
+| `id` |  |
 
 Operations: Load, Remove.
 
@@ -310,6 +311,7 @@ API path: `/inbox/{token}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `success` |  |
 | `token` | The inbox token to register webhook for |
 | `url` | The webhook URL to receive notifications |
@@ -430,6 +432,7 @@ Create an instance: `message = client.Message`
 | Field | Type | Description |
 | --- | --- | --- |
 | `emails` | `Array` |  |
+| `id` | `String` |  |
 
 #### Example: Load
 
@@ -454,6 +457,7 @@ Create an instance: `webhook = client.Webhook`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `String` |  |
 | `success` | `Boolean` |  |
 | `token` | `String` | The inbox token to register webhook for |
 | `url` | `String` | The webhook URL to receive notifications |
@@ -541,15 +545,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-domain = client.Domain
-domain.list()
+inbox = client.Inbox
+inbox.load()
 
-# domain.data_get now returns the domain data from the last list
-# domain.match_get returns the last match criteria
+# inbox.data_get now returns the inbox data from the last load
+# inbox.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

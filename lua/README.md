@@ -66,7 +66,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local domains, err = client:Domain():list()
+local inbox, err = client:Inbox():load()
 if err then error(err) end
 ```
 
@@ -124,7 +124,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Domain():list()
+local result, err = client:Inbox():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -292,6 +292,7 @@ API path: `/custom/{username}@{domain}`
 | Field | Description |
 | --- | --- |
 | `emails` |  |
+| `id` |  |
 
 Operations: Load, Remove.
 
@@ -301,6 +302,7 @@ API path: `/inbox/{token}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `success` |  |
 | `token` | The inbox token to register webhook for |
 | `url` | The webhook URL to receive notifications |
@@ -418,6 +420,7 @@ Create an instance: `local message = client:Message(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `emails` | `table` |  |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -441,6 +444,7 @@ Create an instance: `local webhook = client:Webhook(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `success` | `boolean` |  |
 | `token` | `string` | The inbox token to register webhook for |
 | `url` | `string` | The webhook URL to receive notifications |
@@ -528,15 +532,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local domain = client:Domain()
-domain:list()
+local inbox = client:Inbox()
+inbox:load()
 
--- domain:data_get() now returns the domain data from the last list
--- domain:match_get() returns the last match criteria
+-- inbox:data_get() now returns the inbox data from the last load
+-- inbox:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

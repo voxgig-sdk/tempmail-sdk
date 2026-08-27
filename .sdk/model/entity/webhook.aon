@@ -6,6 +6,11 @@ main: kit: entity: webhook: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "success"
       req: false
       type: "`$BOOLEAN`"
@@ -29,6 +34,11 @@ main: kit: entity: webhook: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "webhook"
   op: {

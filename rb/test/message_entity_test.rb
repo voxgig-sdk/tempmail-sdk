@@ -41,9 +41,13 @@ class MessageEntityTest < Minitest::Test
 
     # LOAD
     message_ref01_ent = client.Message(nil)
-    message_ref01_match_dt0 = {}
+    message_ref01_match_dt0 = {
+      "id" => message_ref01_data["id"],
+    }
     message_ref01_data_dt0_loaded = message_ref01_ent.load(message_ref01_match_dt0, nil)
-    assert !message_ref01_data_dt0_loaded.nil?
+    message_ref01_data_dt0_load_result = Helpers.to_map(message_ref01_data_dt0_loaded.respond_to?(:data_get) ? message_ref01_data_dt0_loaded.data_get : message_ref01_data_dt0_loaded)
+    assert !message_ref01_data_dt0_load_result.nil?
+    assert_equal message_ref01_data_dt0_load_result["id"], message_ref01_data["id"]
 
   end
 end

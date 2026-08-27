@@ -71,12 +71,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-domains, err := client.Domain(nil).List(nil, nil)
+inbox, err := client.Inbox(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = domains
+_ = inbox
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -140,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-domain, err := client.Domain(nil).List(
+inbox, err := client.Inbox(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(domain) // the returned mock data
+fmt.Println(inbox) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -312,6 +312,7 @@ API path: `/custom/{username}@{domain}`
 | Field | Description |
 | --- | --- |
 | `"emails"` |  |
+| `"id"` |  |
 
 Operations: Load, Remove.
 
@@ -321,6 +322,7 @@ API path: `/inbox/{token}`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"success"` |  |
 | `"token"` | The inbox token to register webhook for |
 | `"url"` | The webhook URL to receive notifications |
@@ -454,6 +456,7 @@ Create an instance: `message := client.Message(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `emails` | `[]any` |  |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -481,6 +484,7 @@ Create an instance: `webhook := client.Webhook(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `success` | `bool` |  |
 | `token` | `string` | The inbox token to register webhook for |
 | `url` | `string` | The webhook URL to receive notifications |
@@ -569,15 +573,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-domain := client.Domain(nil)
-domain.List(nil, nil)
+inbox := client.Inbox(nil)
+inbox.Load(nil, nil)
 
-// domain.Data() now returns the domain data from the last list
-// domain.Match() returns the last match criteria
+// inbox.Data() now returns the inbox data from the last load
+// inbox.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

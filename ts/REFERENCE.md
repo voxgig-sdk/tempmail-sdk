@@ -335,6 +335,7 @@ const message = client.Message()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `emails` | `any[]` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -392,6 +393,7 @@ const webhook = client.Webhook()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `success` | `boolean` | No |  |
 | `token` | `string` | Yes | The inbox token to register webhook for |
 | `url` | `string` | Yes | The webhook URL to receive notifications |

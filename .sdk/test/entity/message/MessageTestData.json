@@ -3,18 +3,18 @@
     "message": {
       "MESSAGE00": {
         "emails": [],
-        "token": "TOKEN01",
-        "id": "MESSAGE00"
+        "id": "MESSAGE00",
+        "token": "TOKEN01"
       },
       "MESSAGE01": {
         "emails": [],
-        "token": "TOKEN01",
-        "id": "MESSAGE01"
+        "id": "MESSAGE01",
+        "token": "TOKEN01"
       },
       "MESSAGE02": {
         "emails": [],
-        "token": "TOKEN01",
-        "id": "MESSAGE02"
+        "id": "MESSAGE02",
+        "token": "TOKEN01"
       }
     }
   },

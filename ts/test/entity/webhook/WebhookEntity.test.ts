@@ -63,9 +63,13 @@ describe('WebhookEntity', async () => {
     let webhook_ref01_data = setup.data.new.webhook['webhook_ref01']
 
     webhook_ref01_data = (await webhook_ref01_ent.create(webhook_ref01_data)).data()
-    assert(null != webhook_ref01_data)
+    assert(null != webhook_ref01_data.id)
 
 
+    // REMOVE
+    const webhook_ref01_match_rm0: any = { id: webhook_ref01_data.id }
+    await webhook_ref01_ent.remove(webhook_ref01_match_rm0)
+  
 
   })
 })

@@ -42,6 +42,7 @@
 
 ---@class Message
 ---@field emails? table
+---@field id? string
 
 ---@class MessageLoadMatch
 ---@field token string
@@ -51,12 +52,14 @@
 ---@field token string
 
 ---@class Webhook
+---@field id? string
 ---@field success? boolean
 ---@field token string
 ---@field url string
 ---@field webhookId? string
 
 ---@class WebhookCreateData
+---@field id? string
 ---@field success? boolean
 ---@field token string
 ---@field url string

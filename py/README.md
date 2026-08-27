@@ -73,10 +73,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    domains = client.Domain().list()
-    print(domains)
+    inbox = client.Inbox().load()
+    print(inbox)
 except Exception as err:
-    print(f"list failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -142,8 +142,8 @@ client = TempmailSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-domain = client.Domain().list()
-# domain contains the mock response record
+inbox = client.Inbox().load()
+# inbox contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -307,6 +307,7 @@ API path: `/custom/{username}@{domain}`
 | Field | Description |
 | --- | --- |
 | `emails` |  |
+| `id` |  |
 
 Operations: Load, Remove.
 
@@ -316,6 +317,7 @@ API path: `/inbox/{token}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `success` |  |
 | `token` | The inbox token to register webhook for |
 | `url` | The webhook URL to receive notifications |
@@ -433,6 +435,7 @@ Create an instance: `message = client.Message()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `emails` | `list` |  |
+| `id` | `str` |  |
 
 #### Example: Load
 
@@ -456,6 +459,7 @@ Create an instance: `webhook = client.Webhook()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `success` | `bool` |  |
 | `token` | `str` | The inbox token to register webhook for |
 | `url` | `str` | The webhook URL to receive notifications |
@@ -542,15 +546,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-domain = client.Domain()
-domain.list()
+inbox = client.Inbox()
+inbox.load()
 
-# domain.data_get() now returns the domain data from the last list
-# domain.match_get() returns the last match criteria
+# inbox.data_get() now returns the inbox data from the last load
+# inbox.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

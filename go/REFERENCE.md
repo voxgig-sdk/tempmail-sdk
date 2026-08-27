@@ -292,6 +292,7 @@ fmt.Println(message.GetName()) // "message"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `emails` | `[]any` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -354,6 +355,7 @@ fmt.Println(webhook.GetName()) // "webhook"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `success` | `bool` | No |  |
 | `token` | `string` | Yes | The inbox token to register webhook for |
 | `url` | `string` | Yes | The webhook URL to receive notifications |

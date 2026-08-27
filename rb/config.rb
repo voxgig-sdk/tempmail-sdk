@@ -28,6 +28,7 @@ module TempmailConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -279,6 +280,10 @@ module TempmailConfig
               "name" => "emails",
               "type" => "`$ARRAY`",
             },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
           ],
           "name" => "message",
           "op" => {
@@ -378,6 +383,10 @@ module TempmailConfig
         },
         "webhook" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "success",
               "type" => "`$BOOLEAN`",

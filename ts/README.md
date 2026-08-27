@@ -73,10 +73,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const domains = await client.Domain().list()
-  console.log(domains)
+  const inbox = await client.Inbox().load()
+  console.log(inbox)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -140,10 +140,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TempmailSDK.test()
 
-const domain = await client.Domain().list()
-// domain is the entity, populated with mock response data
-// — call domain.data() for the record itself
-console.log(domain)
+const inbox = await client.Inbox().load()
+// inbox is the entity, populated with mock response data
+// — call inbox.data() for the record itself
+console.log(inbox)
 ```
 
 You can also use the instance method:
@@ -158,10 +158,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Domain()
+const entity = client.Inbox()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -358,6 +358,7 @@ API path: `/custom/{username}@{domain}`
 | Field | Description |
 | --- | --- |
 | `emails` |  |
+| `id` |  |
 
 Operations: load, remove.
 
@@ -367,6 +368,7 @@ API path: `/inbox/{token}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `success` |  |
 | `token` | The inbox token to register webhook for |
 | `url` | The webhook URL to receive notifications |
@@ -484,6 +486,7 @@ Create an instance: `const message = client.Message()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `emails` | `any[]` |  |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -507,6 +510,7 @@ Create an instance: `const webhook = client.Webhook()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `success` | `boolean` |  |
 | `token` | `string` | The inbox token to register webhook for |
 | `url` | `string` | The webhook URL to receive notifications |
@@ -586,16 +590,16 @@ import { TempmailSDK } from '@voxgig-sdk/tempmail'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const domain = client.Domain()
-await domain.list()
+const inbox = client.Inbox()
+await inbox.load()
 
-// domain.data() now returns the domain data from the last `list`
-// domain.match() returns the last match criteria
+// inbox.data() now returns the inbox data from the last `load`
+// inbox.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
