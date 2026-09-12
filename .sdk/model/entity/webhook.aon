@@ -22,6 +22,7 @@ main: kit: entity: webhook: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "url"
       req: true
       short: "The webhook URL to receive notifications"
@@ -48,8 +49,10 @@ main: kit: entity: webhook: {
         {
           method: "POST"
           orig: "/webhook"
-          parts: [
-            "webhook"
+          segments: [
+            {
+              lit: "webhook"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -75,15 +78,19 @@ main: kit: entity: webhook: {
           }
           method: "DELETE"
           orig: "/webhook/{webhookId}"
-          parts: [
-            "webhook"
-            "{id}"
-          ]
           rename: {
             param: {
               webhookId: "id"
             }
           }
+          segments: [
+            {
+              lit: "webhook"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

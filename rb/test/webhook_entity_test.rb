@@ -83,7 +83,7 @@ def webhook_basic_setup(extra)
     "TEMPMAIL_TEST_WEBHOOK_ENTID" => idmap,
     "TEMPMAIL_TEST_LIVE" => "FALSE",
     "TEMPMAIL_TEST_EXPLAIN" => "FALSE",
-    "TEMPMAIL_APIKEY" => "NONE",
+    "TEMPMAIL_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,6 +94,9 @@ def webhook_basic_setup(extra)
 
   if env["TEMPMAIL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["TEMPMAIL_APIKEY"],
       },

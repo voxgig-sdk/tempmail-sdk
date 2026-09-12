@@ -45,9 +45,13 @@ main: kit: entity: inbox: {
           }
           method: "POST"
           orig: "/custom/{username}@{domain}"
-          parts: [
-            "custom"
-            "{username}@{domain}"
+          segments: [
+            {
+              lit: "custom"
+            }
+            {
+              lit: "{username}@{domain}"
+            }
           ]
           select: {
             exist: [
@@ -68,8 +72,10 @@ main: kit: entity: inbox: {
         {
           method: "GET"
           orig: "/generate"
-          parts: [
-            "generate"
+          segments: [
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -78,14 +84,6 @@ main: kit: entity: inbox: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "custom"
-      ]
-    ]
   }
 
 

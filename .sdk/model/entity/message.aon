@@ -41,9 +41,13 @@ main: kit: entity: message: {
           }
           method: "GET"
           orig: "/inbox/{token}"
-          parts: [
-            "inbox"
-            "{token}"
+          segments: [
+            {
+              lit: "inbox"
+            }
+            {
+              var: "token"
+            }
           ]
           select: {
             exist: [
@@ -81,17 +85,25 @@ main: kit: entity: message: {
           }
           method: "DELETE"
           orig: "/inbox/{token}/message/{messageId}"
-          parts: [
-            "inbox"
-            "{token}"
-            "message"
-            "{id}"
-          ]
           rename: {
             param: {
               messageId: "id"
             }
           }
+          segments: [
+            {
+              lit: "inbox"
+            }
+            {
+              var: "token"
+            }
+            {
+              lit: "message"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

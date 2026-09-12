@@ -58,13 +58,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/domains",
-								"parts": []any{
-									"domains",
+								"segments": []any{
+									map[string]any{
+										"lit": "domains",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.domains`",
+								},
+								"parts": []any{
+									"domains",
 								},
 							},
 						},
@@ -87,6 +92,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "date",
 						"short": "Timestamp when the email was received",
 						"type": "`$STRING`",
@@ -117,6 +123,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "email",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -145,15 +155,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/inbox/{token}/message/{messageId}",
-								"parts": []any{
-									"inbox",
-									"{token}",
-									"message",
-									"{message_id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"messageId": "message_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "inbox",
+									},
+									map[string]any{
+										"var": "token",
+									},
+									map[string]any{
+										"lit": "message",
+									},
+									map[string]any{
+										"var": "message_id",
 									},
 								},
 								"select": map[string]any{
@@ -165,6 +183,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"inbox",
+									"{token}",
+									"message",
+									"{message_id}",
 								},
 							},
 						},
@@ -220,9 +244,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/custom/{username}@{domain}",
-								"parts": []any{
-									"custom",
-									"{username}@{domain}",
+								"segments": []any{
+									map[string]any{
+										"lit": "custom",
+									},
+									map[string]any{
+										"lit": "{username}@{domain}",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -233,6 +261,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"custom",
+									"{username}@{domain}",
 								},
 							},
 						},
@@ -246,24 +278,25 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/generate",
-								"parts": []any{
-									"generate",
+								"segments": []any{
+									map[string]any{
+										"lit": "generate",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"generate",
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"custom",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"message": map[string]any{
@@ -276,6 +309,10 @@ func MakeConfig() map[string]any {
 						"name": "id",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "message",
 				"op": map[string]any{
@@ -298,9 +335,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/inbox/{token}",
-								"parts": []any{
-									"inbox",
-									"{token}",
+								"segments": []any{
+									map[string]any{
+										"lit": "inbox",
+									},
+									map[string]any{
+										"var": "token",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -310,6 +351,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"inbox",
+									"{token}",
 								},
 							},
 						},
@@ -340,15 +385,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/inbox/{token}/message/{messageId}",
-								"parts": []any{
-									"inbox",
-									"{token}",
-									"message",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"messageId": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "inbox",
+									},
+									map[string]any{
+										"var": "token",
+									},
+									map[string]any{
+										"lit": "message",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -360,6 +413,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"inbox",
+									"{token}",
+									"message",
+									"{id}",
 								},
 							},
 						},
@@ -390,6 +449,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "url",
 						"req": true,
 						"short": "The webhook URL to receive notifications",
@@ -400,6 +460,10 @@ func MakeConfig() map[string]any {
 						"short": "Unique identifier for the registered webhook",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "webhook",
 				"op": map[string]any{
@@ -412,13 +476,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/webhook",
-								"parts": []any{
-									"webhook",
+								"segments": []any{
+									map[string]any{
+										"lit": "webhook",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"webhook",
 								},
 							},
 						},
@@ -442,13 +511,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/webhook/{webhookId}",
-								"parts": []any{
-									"webhook",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"webhookId": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "webhook",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -460,6 +533,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"webhook",
+									"{id}",
+								},
 							},
 						},
 					},
@@ -470,6 +547,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

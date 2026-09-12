@@ -122,14 +122,22 @@ func emailDirectSetup(mockres any) *emailDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TEMPMAIL_TEST_EMAIL_ENTID": map[string]any{},
 		"TEMPMAIL_TEST_LIVE":    "FALSE",
-		"TEMPMAIL_APIKEY":       "NONE",
+		"TEMPMAIL_APIKEY":       "",
 	})
 
 	live := env["TEMPMAIL_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["TEMPMAIL_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewTempmailSDK(mergedOpts)
 

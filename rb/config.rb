@@ -66,14 +66,19 @@ module TempmailConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/domains",
-                  "parts" => [
-                    "domains",
+                  "segments" => [
+                    {
+                      "lit" => "domains",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.domains`",
                   },
+                  "parts" => [
+                    "domains",
+                  ],
                 },
               ],
             },
@@ -95,6 +100,7 @@ module TempmailConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "date",
               "short" => "Timestamp when the email was received",
               "type" => "`$STRING`",
@@ -125,6 +131,10 @@ module TempmailConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "email",
           "op" => {
             "load" => {
@@ -153,17 +163,25 @@ module TempmailConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/inbox/{token}/message/{messageId}",
-                  "parts" => [
-                    "inbox",
-                    "{token}",
-                    "message",
-                    "{message_id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "messageId" => "message_id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "inbox",
+                    },
+                    {
+                      "var" => "token",
+                    },
+                    {
+                      "lit" => "message",
+                    },
+                    {
+                      "var" => "message_id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "message_id",
@@ -174,6 +192,12 @@ module TempmailConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "inbox",
+                    "{token}",
+                    "message",
+                    "{message_id}",
+                  ],
                 },
               ],
             },
@@ -228,9 +252,13 @@ module TempmailConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/custom/{username}@{domain}",
-                  "parts" => [
-                    "custom",
-                    "{username}@{domain}",
+                  "segments" => [
+                    {
+                      "lit" => "custom",
+                    },
+                    {
+                      "lit" => "{username}@{domain}",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -242,6 +270,10 @@ module TempmailConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "custom",
+                    "{username}@{domain}",
+                  ],
                 },
               ],
             },
@@ -254,24 +286,25 @@ module TempmailConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/generate",
-                  "parts" => [
-                    "generate",
+                  "segments" => [
+                    {
+                      "lit" => "generate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "generate",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "custom",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "message" => {
@@ -285,6 +318,10 @@ module TempmailConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "message",
           "op" => {
             "load" => {
@@ -306,9 +343,13 @@ module TempmailConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/inbox/{token}",
-                  "parts" => [
-                    "inbox",
-                    "{token}",
+                  "segments" => [
+                    {
+                      "lit" => "inbox",
+                    },
+                    {
+                      "var" => "token",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -319,6 +360,10 @@ module TempmailConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "inbox",
+                    "{token}",
+                  ],
                 },
               ],
             },
@@ -348,17 +393,25 @@ module TempmailConfig
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/inbox/{token}/message/{messageId}",
-                  "parts" => [
-                    "inbox",
-                    "{token}",
-                    "message",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "messageId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "inbox",
+                    },
+                    {
+                      "var" => "token",
+                    },
+                    {
+                      "lit" => "message",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -369,6 +422,12 @@ module TempmailConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "inbox",
+                    "{token}",
+                    "message",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -398,6 +457,7 @@ module TempmailConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "url",
               "req" => true,
               "short" => "The webhook URL to receive notifications",
@@ -409,6 +469,10 @@ module TempmailConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "webhook",
           "op" => {
             "create" => {
@@ -420,14 +484,19 @@ module TempmailConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/webhook",
-                  "parts" => [
-                    "webhook",
+                  "segments" => [
+                    {
+                      "lit" => "webhook",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "webhook",
+                  ],
                 },
               ],
             },
@@ -450,15 +519,19 @@ module TempmailConfig
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/webhook/{webhookId}",
-                  "parts" => [
-                    "webhook",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "webhookId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "webhook",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -468,6 +541,10 @@ module TempmailConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "webhook",
+                    "{id}",
+                  ],
                 },
               ],
             },

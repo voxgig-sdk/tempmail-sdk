@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -98,14 +109,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/domains",
-              "parts": [
-                "domains"
+              "segments": [
+                {
+                  "lit": "domains"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.domains`"
-              }
+              },
+              "parts": [
+                "domains"
+              ]
             }
           ]
         }
@@ -127,6 +143,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "date",
           "short": "Timestamp when the email was received",
           "type": "`$STRING`"
@@ -157,6 +174,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "email",
       "op": {
         "load": {
@@ -185,17 +206,25 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/inbox/{token}/message/{messageId}",
-              "parts": [
-                "inbox",
-                "{token}",
-                "message",
-                "{message_id}"
-              ],
               "rename": {
                 "param": {
                   "messageId": "message_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "inbox"
+                },
+                {
+                  "var": "token"
+                },
+                {
+                  "lit": "message"
+                },
+                {
+                  "var": "message_id"
+                }
+              ],
               "select": {
                 "exist": [
                   "message_id",
@@ -205,7 +234,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "inbox",
+                "{token}",
+                "message",
+                "{message_id}"
+              ]
             }
           ]
         }
@@ -260,9 +295,13 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/custom/{username}@{domain}",
-              "parts": [
-                "custom",
-                "{username}@{domain}"
+              "segments": [
+                {
+                  "lit": "custom"
+                },
+                {
+                  "lit": "{username}@{domain}"
+                }
               ],
               "select": {
                 "exist": [
@@ -273,7 +312,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "custom",
+                "{username}@{domain}"
+              ]
             }
           ]
         },
@@ -286,24 +329,25 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/generate",
-              "parts": [
-                "generate"
+              "segments": [
+                {
+                  "lit": "generate"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "generate"
+              ]
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "custom"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "message": {
@@ -317,6 +361,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "message",
       "op": {
         "load": {
@@ -338,9 +386,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/inbox/{token}",
-              "parts": [
-                "inbox",
-                "{token}"
+              "segments": [
+                {
+                  "lit": "inbox"
+                },
+                {
+                  "var": "token"
+                }
               ],
               "select": {
                 "exist": [
@@ -350,7 +402,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "inbox",
+                "{token}"
+              ]
             }
           ]
         },
@@ -380,17 +436,25 @@ class Config {
               "kind": "http",
               "method": "DELETE",
               "orig": "/inbox/{token}/message/{messageId}",
-              "parts": [
-                "inbox",
-                "{token}",
-                "message",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "messageId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "inbox"
+                },
+                {
+                  "var": "token"
+                },
+                {
+                  "lit": "message"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id",
@@ -400,7 +464,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "inbox",
+                "{token}",
+                "message",
+                "{id}"
+              ]
             }
           ]
         }
@@ -430,6 +500,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "url",
           "req": true,
           "short": "The webhook URL to receive notifications",
@@ -441,6 +512,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "webhook",
       "op": {
         "create": {
@@ -452,14 +527,19 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/webhook",
-              "parts": [
-                "webhook"
+              "segments": [
+                {
+                  "lit": "webhook"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "webhook"
+              ]
             }
           ]
         },
@@ -482,15 +562,19 @@ class Config {
               "kind": "http",
               "method": "DELETE",
               "orig": "/webhook/{webhookId}",
-              "parts": [
-                "webhook",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "webhookId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "webhook"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -499,7 +583,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "webhook",
+                "{id}"
+              ]
             }
           ]
         }
@@ -515,6 +603,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

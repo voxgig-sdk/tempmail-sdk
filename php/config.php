@@ -80,13 +80,18 @@ class TempmailConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/domains',
-                  'parts' => [
-                    'domains',
+                  'segments' => [
+                    [
+                      'lit' => 'domains',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.domains`',
+                  ],
+                  'parts' => [
+                    'domains',
                   ],
                 ],
               ],
@@ -109,6 +114,7 @@ class TempmailConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'date',
               'short' => 'Timestamp when the email was received',
               'type' => '`$STRING`',
@@ -139,6 +145,10 @@ class TempmailConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'email',
           'op' => [
             'load' => [
@@ -167,15 +177,23 @@ class TempmailConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/inbox/{token}/message/{messageId}',
-                  'parts' => [
-                    'inbox',
-                    '{token}',
-                    'message',
-                    '{message_id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'messageId' => 'message_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'inbox',
+                    ],
+                    [
+                      'var' => 'token',
+                    ],
+                    [
+                      'lit' => 'message',
+                    ],
+                    [
+                      'var' => 'message_id',
                     ],
                   ],
                   'select' => [
@@ -187,6 +205,12 @@ class TempmailConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'inbox',
+                    '{token}',
+                    'message',
+                    '{message_id}',
                   ],
                 ],
               ],
@@ -242,9 +266,13 @@ class TempmailConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/custom/{username}@{domain}',
-                  'parts' => [
-                    'custom',
-                    '{username}@{domain}',
+                  'segments' => [
+                    [
+                      'lit' => 'custom',
+                    ],
+                    [
+                      'lit' => '{username}@{domain}',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -255,6 +283,10 @@ class TempmailConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'custom',
+                    '{username}@{domain}',
                   ],
                 ],
               ],
@@ -268,24 +300,25 @@ class TempmailConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/generate',
-                  'parts' => [
-                    'generate',
+                  'segments' => [
+                    [
+                      'lit' => 'generate',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'generate',
+                  ],
                 ],
               ],
             ],
           ],
           'relations' => [
-            'ancestors' => [
-              [
-                'custom',
-              ],
-            ],
+            'ancestors' => [],
           ],
         ],
         'message' => [
@@ -298,6 +331,10 @@ class TempmailConfig
               'name' => 'id',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'message',
           'op' => [
@@ -320,9 +357,13 @@ class TempmailConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/inbox/{token}',
-                  'parts' => [
-                    'inbox',
-                    '{token}',
+                  'segments' => [
+                    [
+                      'lit' => 'inbox',
+                    ],
+                    [
+                      'var' => 'token',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -332,6 +373,10 @@ class TempmailConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'inbox',
+                    '{token}',
                   ],
                 ],
               ],
@@ -362,15 +407,23 @@ class TempmailConfig
                   'kind' => 'http',
                   'method' => 'DELETE',
                   'orig' => '/inbox/{token}/message/{messageId}',
-                  'parts' => [
-                    'inbox',
-                    '{token}',
-                    'message',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'messageId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'inbox',
+                    ],
+                    [
+                      'var' => 'token',
+                    ],
+                    [
+                      'lit' => 'message',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -382,6 +435,12 @@ class TempmailConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'inbox',
+                    '{token}',
+                    'message',
+                    '{id}',
                   ],
                 ],
               ],
@@ -412,6 +471,7 @@ class TempmailConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'url',
               'req' => true,
               'short' => 'The webhook URL to receive notifications',
@@ -422,6 +482,10 @@ class TempmailConfig
               'short' => 'Unique identifier for the registered webhook',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'webhook',
           'op' => [
@@ -434,13 +498,18 @@ class TempmailConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/webhook',
-                  'parts' => [
-                    'webhook',
+                  'segments' => [
+                    [
+                      'lit' => 'webhook',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'webhook',
                   ],
                 ],
               ],
@@ -464,13 +533,17 @@ class TempmailConfig
                   'kind' => 'http',
                   'method' => 'DELETE',
                   'orig' => '/webhook/{webhookId}',
-                  'parts' => [
-                    'webhook',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'webhookId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'webhook',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -481,6 +554,10 @@ class TempmailConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'webhook',
+                    '{id}',
                   ],
                 ],
               ],

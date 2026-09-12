@@ -75,7 +75,7 @@ function inbox_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "inbox01", "inbox02", "inbox03", "custom01", "custom02", "custom03", "domain01", "username01" },
+    { "inbox01", "inbox02", "inbox03", "domain01", "username01" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",
@@ -94,7 +94,7 @@ function inbox_basic_setup(extra)
     ["TEMPMAIL_TEST_INBOX_ENTID"] = idmap,
     ["TEMPMAIL_TEST_LIVE"] = "FALSE",
     ["TEMPMAIL_TEST_EXPLAIN"] = "FALSE",
-    ["TEMPMAIL_APIKEY"] = "NONE",
+    ["TEMPMAIL_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -105,6 +105,9 @@ function inbox_basic_setup(extra)
 
   if env["TEMPMAIL_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["TEMPMAIL_APIKEY"],
       },

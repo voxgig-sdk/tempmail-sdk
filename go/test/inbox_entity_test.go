@@ -52,7 +52,7 @@ func TestInboxEntity(t *testing.T) {
 		// CREATE
 		inboxRef01Ent := client.Inbox(nil)
 		inboxRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "inbox"}, setup.data), "inbox_ref01"))
+			vs.GetPath(setup.data, []any{"new", "inbox"}), "inbox_ref01"))
 		inboxRef01Data["domain"] = setup.idmap["domain01"]
 		inboxRef01Data["username"] = setup.idmap["username01"]
 
@@ -102,8 +102,8 @@ func inboxBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
-		[]any{"inbox01", "inbox02", "inbox03", "custom01", "custom02", "custom03", "domain01", "username01"},
+	idmap, _ := vs.Transform(
+		[]any{"inbox01", "inbox02", "inbox03", "domain01", "username01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",
@@ -122,7 +122,7 @@ func inboxBasicSetup(extra map[string]any) *entityTestSetup {
 		"TEMPMAIL_TEST_INBOX_ENTID": idmap,
 		"TEMPMAIL_TEST_LIVE":      "FALSE",
 		"TEMPMAIL_TEST_EXPLAIN":   "FALSE",
-		"TEMPMAIL_APIKEY":         "NONE",
+		"TEMPMAIL_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TEMPMAIL_TEST_INBOX_ENTID"])
@@ -131,11 +131,23 @@ func inboxBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TEMPMAIL_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TEMPMAIL_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTempmailSDK(core.ToMapAny(mergedOpts))
 	}

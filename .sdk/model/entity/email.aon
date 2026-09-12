@@ -18,6 +18,7 @@ main: kit: entity: email: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "date"
       req: false
       short: "Timestamp when the email was received"
@@ -86,17 +87,25 @@ main: kit: entity: email: {
           }
           method: "GET"
           orig: "/inbox/{token}/message/{messageId}"
-          parts: [
-            "inbox"
-            "{token}"
-            "message"
-            "{message_id}"
-          ]
           rename: {
             param: {
               messageId: "message_id"
             }
           }
+          segments: [
+            {
+              lit: "inbox"
+            }
+            {
+              var: "token"
+            }
+            {
+              lit: "message"
+            }
+            {
+              var: "message_id"
+            }
+          ]
           select: {
             exist: [
               "message_id"

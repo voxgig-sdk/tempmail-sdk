@@ -78,15 +78,17 @@ function email_direct_setup($mockres)
     $env = Runner::env_override([
         "TEMPMAIL_TEST_EMAIL_ENTID" => [],
         "TEMPMAIL_TEST_LIVE" => "FALSE",
-        "TEMPMAIL_APIKEY" => "NONE",
+        "TEMPMAIL_APIKEY" => "",
     ]);
 
     $live = $env["TEMPMAIL_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["TEMPMAIL_APIKEY"],
-        ];
+        ]);
         $client = new TempmailSDK($merged_opts);
         return [
             "client" => $client,
