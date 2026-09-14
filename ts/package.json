@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/tempmail",
+  "name": "@voxgig-sdk/tempmail-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the TempMail public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [
